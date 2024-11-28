@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import SRC_LOGO from "/src_logo.png";
+import SHOOLINI_LOGO from "/shoolini-logo.png";
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
@@ -17,14 +18,25 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white shadow-md sticky top-0 px-14 flex items-center justify-between py-2 max-sm:px-5 max-md:px-8">
+      <nav className="bg-darkRed shadow-md sticky top-0 px-14 flex items-center justify-between py-4 max-sm:px-5 max-md:px-8">
         <div>
           {/* { LOGO } */}
-          <Link to={"/"}>
-            <img src={SRC_LOGO} alt="" className="w-20 max-sm:w-16 md:w-18" />
+          <Link to={"/"} className="flex gap-6 max-sm:gap-2 max-md:gap-4">
+            <img
+              src={SRC_LOGO}
+              alt=""
+              className="w-24 max-sm:w-16 md:w-18 border-gray-100 border-r pr-3 max-sm:pr-0 max-md:pr-2"
+              draggable="false"
+            />
+            <img
+              src={SHOOLINI_LOGO}
+              alt=""
+              className="w-24 max-sm:w-16 md:w-18"
+              draggable="false"
+            />
           </Link>
         </div>
-        <div className="">
+        <div className="text-white">
           {/* { HAMBURGER_MENU } */}
           <p>
             <MdMenu
