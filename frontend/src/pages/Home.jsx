@@ -32,7 +32,7 @@ const Home = () => {
       </div>
 
       {/* Statistics Section */}
-      <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-10 mt-10 border border-black bg-slate-500/[.3] p-2 rounded-md">
+      <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-10 mt-10 border border-black bg-slate-500/[.3] p-2  shadow-[4px_6px_0px_0px_rgba(0,_0,_0)]">
         <div className="flex flex-col items-center text-center w-24 sm:w-28 lg:w-36">
           <FaFolderOpen className="text-4xl lg:text-5xl text-gray-800" />
           <p className="font-semibold text-lg lg:text-2xl mt-2 text-gray-700">2</p>

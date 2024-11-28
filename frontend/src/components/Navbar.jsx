@@ -37,7 +37,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="text-white">
-          {/* { HAMBURGER_MENU } */}
+          {/* { HAMBURGER_MENU_ICON } */}
           <p>
             <MdMenu
               className="cursor-pointer text-2xl sm:hidden"
@@ -47,16 +47,16 @@ const Navbar = () => {
             />
           </p>
           <ul className="flex gap-8 max-sm:hidden">
-            <li className="text-[14px] max-md:text-sm lg:text-[15px]">
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/"}>Home</Link>
             </li>
-            <li className="text-[14px] max-md:text-sm lg:text-[15px]">
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/about"}>About</Link>
             </li>
-            <li className="text-[14px] max-md:text-sm lg:text-[15px]">
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/services"}>Services</Link>
             </li>
-            <li className="text-[14px] max-md:text-sm lg:text-[15px]">
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/contact"}>Contact</Link>
             </li>
           </ul>
@@ -65,7 +65,7 @@ const Navbar = () => {
         {/* MOBILE MENU */}
       </nav>
       <div
-        className={`flex flex-col bg-yellow-200 h-screen w-screen text-2xl fixed top-0 p-3 gap-8 ${
+        className={`flex flex-col bg-yellow-200 h-screen w-screen text-2xl fixed top-0 p-3 gap-8 z-10 ${
           isOpen ? "block" : "hidden"
         }`}
       >
