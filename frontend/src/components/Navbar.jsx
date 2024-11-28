@@ -18,20 +18,20 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-darkRed shadow-md sticky top-0 px-14 flex items-center justify-between py-4 max-sm:px-5 max-md:px-8">
+      <nav className="bg-darkRed shadow-md sticky top-0 px-14 flex items-center justify-between py-4 max-sm:px-5 max-md:px-8 z-10">
         <div>
           {/* { LOGO } */}
           <Link to={"/"} className="flex gap-6 max-sm:gap-2 max-md:gap-4">
             <img
               src={SRC_LOGO}
               alt=""
-              className="w-24 max-sm:w-16 md:w-18 border-gray-100 border-r pr-3 max-sm:pr-0 max-md:pr-2"
+              className="w-20 max-sm:w-16 md:w-18 lg:w-24 border-gray-100 border-r pr-3 max-sm:pr-0 max-md:pr-2"
               draggable="false"
             />
             <img
               src={SHOOLINI_LOGO}
               alt=""
-              className="w-24 max-sm:w-16 md:w-18"
+              className="w-20 max-sm:w-16 md:w-18 lg:w-24"
               draggable="false"
             />
           </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
               }}
             />
           </p>
-          <ul className="flex gap-8 max-sm:hidden">
+          <ul className="flex md:gap-8 sm:gap-4 max-sm:hidden">
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/"}>Home</Link>
             </li>
@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link to={"/about"}>About</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
-              <Link to={"/services"}>Services</Link>
+              <Link to={"/research-mentors"}>Research Mentors</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/contact"}>Contact</Link>

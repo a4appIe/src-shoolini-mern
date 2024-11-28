@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home"
 import About from "./pages/About"
-import Services from "./pages/Services"
 import Contact from "./pages/Contact"
 import NotFound from "./pages/NotFound";
+import ResearchMentors from "./pages/ResearchMentors";
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home/>} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services/>} />
+          <Route path="/research-mentors" element={<ResearchMentors/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Route>
