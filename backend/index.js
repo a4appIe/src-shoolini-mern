@@ -1,5 +1,6 @@
 const express = require("express");
 const adminRoute = require("./routes/adminRoute");
+const eventRoute = require("./routes/eventRoute");
 const dbConnect = require("./config/dbConect");
 const cors = require("cors");
 // const cloudinaryConfig = require("./config/cloudinaryConfig");
@@ -9,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api/v1", adminRoute);
-// app.use("/api/v1", blogRoute);
+app.use("/api/v1", eventRoute);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server started");
