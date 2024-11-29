@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ResearchMentors from "./pages/ResearchMentors";
 import Events from "./pages/Events";
+import LoginForm from "./pages/LoginForm";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/mentors" element={<ResearchMentors />} />
         <Route path="/gallery" element={<ResearchMentors />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<LoginForm />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
