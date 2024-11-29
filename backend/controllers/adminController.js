@@ -24,8 +24,6 @@ const createAdmin = async (req, res) => {
       username: admin.username,
       id: admin._id,
     });
-    console.log(token);
-    console.log(admin);
     return res.status(200).json({
       message: "Admin created successfully",
       success: true,

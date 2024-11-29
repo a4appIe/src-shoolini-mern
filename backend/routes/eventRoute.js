@@ -1,8 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const { createEvent } = require("../controllers/eventController");
+const upload = require("../config/multer");
 
-router.post("/admin/event/create", createEvent);
+router.post(
+  "/admin/event/create",
+  upload.fields([
+    { name: "cover_image", maxCount: 1 },
+    { name: "about_image", maxCount: 1 },
+    { name: "host_image", maxCount: 1 },
+    { name: "speakers", maxCount: 20 },
+  ]),
+  createEvent
+);
 
 // router.post("/admin/login", loginAdmin);
 

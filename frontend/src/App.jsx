@@ -8,6 +8,7 @@ import ResearchMentors from "./pages/ResearchMentors";
 import Events from "./pages/Events";
 import LoginForm from "./pages/LoginForm";
 import EventLandingPage from "./pages/EventLandingPage";
+import EventForm from "./pages/EventFrom";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/" element={<Navbar />}>
         <Route index element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/add-event" element={<EventForm />} />
         <Route path="/event" element={<EventLandingPage />} />
         <Route path="/mentors" element={<ResearchMentors />} />
         <Route path="/gallery" element={<ResearchMentors />} />

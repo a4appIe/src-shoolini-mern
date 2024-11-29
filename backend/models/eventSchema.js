@@ -1,16 +1,41 @@
 const mongoose = require("mongoose");
 
-const eventSchema = mongoose.Schema({
-  title: String,
-  headline: String,
-  date: String,
-  address: String,
-  desc: String,
-  cover_image: String,
-  about_image: String,
-  speakers: Array,
+const speakerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  designation: { type: String, required: true },
+  image: {
+    imageUrl: { type: String },
+    imageId: { type: String },
+  },
 });
 
-const Event = mongoose.model("Event", eventSchema);
+const hostSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  designation: { type: String, required: true },
+  image: {
+    imageUrl: { type: String },
+    imageId: { type: String },
+  },
+});
 
-module.exports = Event; 
+const eventSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  agenda: { type: String, required: true },
+  date: { type: Date, required: true },
+  venue: { type: String, required: true },
+  time: { type: String, required: true },
+  desc: { type: String, required: true },
+  category: { type: String, required: true },
+  host: hostSchema,
+  cover_image: {
+    imageUrl: { type: String },
+    imageId: { type: String },
+  },
+  about_image: {
+    imageUrl: { type: String },
+    imageId: { type: String },
+  },
+  speakers: [speakerSchema],
+});
+
+module.exports = mongoose.model("Event", eventSchema);
