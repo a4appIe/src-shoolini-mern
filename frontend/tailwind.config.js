@@ -22,7 +22,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        white: "#fffce8",
+        white: "#F8F9FA",
         orange: "#ff7900",
         darkRed: "#8E3B3D",
         green: "#697a21",

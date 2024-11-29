@@ -3,13 +3,13 @@ import React from "react";
 const LoginForm = () => {
   return (
     <div className="flex items-center justify-center min-h-[92vh] bg-[#F8F9FA]">
-      <div className="card w-full max-w-max p-6 md:p-8 bg-darkRed rounded-lg text-center shadow-lg min-h-[350px] mx-2 lg:min-h-[400px] lg:min-w-[350px]">
+      <div className="card w-full max-w-max p-6 md:p-8 bg-darkRed shadow-[6px_6px_0px_0px_rgb(0,0,0)] text-center min-h-[350px] mx-2 lg:min-h-[400px] lg:min-w-[350px]">
         <h4 className="title text-xl md:text-2xl font-medium mb-4 text-[#f5f5f5]">
           Log In!
         </h4>
         <form>
           {/* Email Field */}
-          <div className="field flex items-center gap-2 bg-white rounded-md px-3 py-2 mb-6">
+          <div className="field flex items-center gap-2 bg-white px-3 py-2 mb-6">
             <svg
               className="input-icon w-5 h-5 fill-brown"
               xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ const LoginForm = () => {
           </div>
 
           {/* Password Field */}
-          <div className="field flex items-center gap-2 bg-white rounded-md px-3 py-2 mb-6">
+          <div className="field flex items-center gap-2 bg-white px-3 py-2 mb-6">
             <svg
               className="input-icon w-5 h-5 fill-brown"
               xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const LoginForm = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="btn w-full rounded-md py-2 px-4 bg-brown text-white font-medium text-sm md:text-base uppercase shadow-md hover:bg-[#5e6681] hover:text-[#ffeba7] hover:shadow-lg transition-all duration-300 mb-6"
+            className="btn w-full py-2 px-4 bg-brown text-white font-medium text-sm md:text-base uppercase shadow-md hover:bg-[#5e6681] hover:shadow-lg transition-all duration-300 mb-6"
           >
             Login
           </button>

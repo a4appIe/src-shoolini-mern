@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import MentorCard from "../components/MentorCard";
+import HERO_BG from "/bg-img.jpg";
 import DR_PANKAJ_VAIDYA from "/pankajvaidya.jpg";
 
 const ResearchMentors = () => {
@@ -10,11 +11,21 @@ const ResearchMentors = () => {
     scrollToTop();
   }, []);
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: `url("${HERO_BG}")`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+      }}
+    >
       {/* SECTION */}
 
-      <div className="p-10 bg-[#F8F9FA] flex flex-col items-center justify-center w-full max-sm:p-3">
-        <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">R & D Team :-</h1>
+      <div className="p-10 flex flex-col items-start justify-center w-full max-sm:p-3">
+        <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">
+          R & D Team :-
+        </h1>
         <div className="gap-5 flex flex-wrap items-center justify-center w-full">
           <MentorCard
             isMD={true}
@@ -65,7 +76,7 @@ const ResearchMentors = () => {
 
       {/* SECTION */}
 
-      <div className="p-10 bg-[#F8F9FA] flex flex-col items-start justify-center w-full max-sm:p-3">
+      <div className="p-10 flex flex-col items-start justify-center w-full max-sm:p-3">
         <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">
           Financial Board :-
         </h1>
@@ -119,7 +130,7 @@ const ResearchMentors = () => {
 
       {/* SECTION */}
 
-      <div className="p-10 bg-[#F8F9FA] flex flex-col items-start justify-center w-full max-sm:p-3">
+      <div className="p-10 flex flex-col items-start justify-center w-full max-sm:p-3">
         <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">
           Innovation & Marketing Board :-
         </h1>
@@ -173,7 +184,7 @@ const ResearchMentors = () => {
 
       {/* SECTION */}
 
-      <div className="p-10 bg-[#F8F9FA] flex flex-col items-start justify-center w-full max-sm:p-3">
+      <div className="p-10 flex flex-col items-start justify-center w-full max-sm:p-3">
         <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">
           Technical Operation Board :-
         </h1>
@@ -227,7 +238,7 @@ const ResearchMentors = () => {
 
       {/* SECTION */}
 
-      <div className="p-10 bg-[#F8F9FA] flex flex-col items-start justify-center w-full max-sm:p-3">
+      <div className="p-10 flex flex-col items-start justify-center w-full max-sm:p-3">
         <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">
           Events and Outreach Board :-
         </h1>
@@ -278,7 +289,7 @@ const ResearchMentors = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
