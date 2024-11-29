@@ -11,6 +11,7 @@ const createEvent = async (req, res) => {
       category,
       venue,
       time,
+      visibility,
       date,
       host_name,
       host_designation,
@@ -99,6 +100,7 @@ const createEvent = async (req, res) => {
       venue,
       time,
       date,
+      visibility,
       host: {
         name: host_name,
         designation: host_designation,

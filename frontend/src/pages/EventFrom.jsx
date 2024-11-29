@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const EventForm = () => {
-  
   const [speakers, setSpeakers] = useState([
     { name: "", designation: "", image: null },
   ]);
@@ -180,7 +179,6 @@ const EventForm = () => {
               <option value="webinar">Webinar</option>
             </select>
           </div>
-          
 
           {/* Venue */}
           <div>
@@ -345,6 +343,27 @@ const EventForm = () => {
             >
               + Add Speaker
             </button>
+          </div>
+
+          {/* Visibility */}
+          <div>
+            <label
+              htmlFor="visibility"
+              className="block text-gray-700 font-medium"
+            >
+              Visibility
+            </label>
+            <select
+              id="visibility"
+              name="visibility"
+              className="w-full mt-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              onChange={handleFormDataChange}
+            >
+              <option value="">Select visibility</option>
+              <option value="ongoing">ongoing</option>
+              <option value="upcoming">upcoming</option>
+              <option value="past">past</option>
+            </select>
           </div>
 
           {/* Submit Button */}
