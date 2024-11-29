@@ -54,7 +54,11 @@ const Navbar = () => {
               <Link to={"/events"}>Events</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
-              <Link to={"/research-mentors"}>Research Mentors</Link>
+              <Link to={"/mentors"}>Mentors</Link>
+            </li>
+
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
+              <Link to={"/gallery"}>Gallery</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/contact"}>Contact</Link>
