@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const EventForm = () => {
+  
   const [speakers, setSpeakers] = useState([
     { name: "", designation: "", image: null },
   ]);
+
   const [formData, setFormData] = useState({
     title: "",
     desc: "",
@@ -178,6 +180,7 @@ const EventForm = () => {
               <option value="webinar">Webinar</option>
             </select>
           </div>
+          
 
           {/* Venue */}
           <div>

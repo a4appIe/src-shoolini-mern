@@ -26,6 +26,7 @@ const eventSchema = new mongoose.Schema({
   time: { type: String, required: true },
   desc: { type: String, required: true },
   category: { type: String, required: true },
+  visibility: { type: String, required: true },
   host: hostSchema,
   cover_image: {
     imageUrl: { type: String },

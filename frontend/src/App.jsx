@@ -9,23 +9,28 @@ import Events from "./pages/Events";
 import LoginForm from "./pages/LoginForm";
 import EventLandingPage from "./pages/EventLandingPage";
 import EventForm from "./pages/EventFrom";
+import { Toaster } from "react-hot-toast";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
   return (
     <div className="bg-white">
-    <Routes>
-      <Route path="/" element={<Navbar />}>
-        <Route index element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/add-event" element={<EventForm />} />
-        <Route path="/event" element={<EventLandingPage />} />
-        <Route path="/mentors" element={<ResearchMentors />} />
-        <Route path="/gallery" element={<ResearchMentors />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/admin" element={<LoginForm />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes></div>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/add-event" element={<EventForm />} />
+          <Route path="/event" element={<EventLandingPage />} />
+          <Route path="/mentors" element={<ResearchMentors />} />
+          <Route path="/gallery" element={<ResearchMentors />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<LoginForm />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+      <Toaster position="top-center" reverseOrder={false} />
+    </div>
   );
 };
 
