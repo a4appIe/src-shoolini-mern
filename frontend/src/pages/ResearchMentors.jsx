@@ -13,7 +13,7 @@ const ResearchMentors = () => {
     <>
       {/* SECTION */}
 
-      <div className="p-10 bg-[#F8F9FA] flex flex-col items-start justify-center w-full max-sm:p-3">
+      <div className="p-10  bg-[#F8F9FA] flex flex-col items-start justify-center w-full max-sm:p-3">
         <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">R & D Team :-</h1>
         <div className="gap-5 flex flex-wrap items-center justify-center w-full">
           <MentorCard

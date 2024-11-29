@@ -51,7 +51,7 @@ const Navbar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
-              <Link to={"/about"}>About</Link>
+              <Link to={"/events"}>Events</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/research-mentors"}>Research Mentors</Link>
