@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import HERO_BG from "/bg-img.jpg";
 
 const EventForm = () => {
+  const { token } = localStorage.getItem("admin")
+    ? JSON.parse(localStorage.getItem("admin"))
+    : { token: null };
+  const navigate = useNavigate();
   const [speakers, setSpeakers] = useState([
     { name: "", designation: "", image: null },
   ]);
@@ -36,6 +42,7 @@ const EventForm = () => {
     formDatax.append("date", formData.date);
     formDatax.append("host_name", formData.hostName);
     formDatax.append("host_designation", formData.hostDesignation);
+    formDatax.append("visibility", formData.visibility);
 
     // Append images
     if (formData.hostImage) formDatax.append("host_image", formData.hostImage);
@@ -65,19 +72,19 @@ const EventForm = () => {
     // SENDING REQUEST ---------------
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/admin/event/create`,
+        `http://localhost:5000/api/v1/event/create`,
         formDatax,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            // Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      // toast.success(res.data.message);
-      // return navigate("/");
+      toast.success(res.data.message);
+      return navigate("/");
     } catch (error) {
-      // toast.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
@@ -110,6 +117,12 @@ const EventForm = () => {
   useEffect(() => {
     scrollToTop();
   }, []);
+  useEffect(() => {
+    if (!token) {
+      toast.error("Please login to continue");
+      navigate("/admin");
+    }
+  }, [token]);
 
   return (
     <div
@@ -387,7 +400,7 @@ const EventForm = () => {
           <div className="col-span-1 md:col-span-2 text-center">
             <button
               type="submit"
-              className="w-full md:w-auto px-6 py-3 bg-darkRed text-white rounded-md font-bold hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full md:w-auto px-6 py-3 bg-darkRed text-white rounded-md font-bold focus:outline-none"
             >
               Submit
             </button>

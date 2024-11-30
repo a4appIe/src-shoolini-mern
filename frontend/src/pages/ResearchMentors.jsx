@@ -22,7 +22,7 @@ const ResearchMentors = () => {
     >
       {/* SECTION */}
 
-      <div className="p-10 flex flex-col items-start justify-center w-full max-sm:p-3">
+      <div className="p-10 pt-14 flex flex-col items-start justify-center w-full max-sm:p-3">
         <h1 className="text-4xl font-bold mb-5 text-darkRed border-b-2 border-darkRed">
           R & D Team :-
         </h1>

@@ -1,15 +1,15 @@
 import React from "react";
 
-const SpeakerCard = () => {
+const SpeakerCard = ({name, designation, image}) => {
   return (
     <div className="bg-gray-400 p-6 flex flex-col justify-center shadow-[6px_6px_0_0_rgb(0,0,0)] rounded-tl-xl">
       <img
-        src="https://websitedemos.net/event-02/wp-content/uploads/sites/863/2021/05/event-speaker-2-1.jpg"
+        src={image}
         alt=""
-        className="w-24 h-24 rounded-full mb-4 mx-auto"
+        className="w-24 h-24 rounded-full mb-4 mx-auto object-cover object-center"
       />
-      <h3 className="text-lg font-bold mb-2">Jane Roberts</h3>
-      <p className="text-gray-600">Sr. creative designer</p>
+      <h3 className="text-lg font-bold mb-2">{name}</h3>
+      <p className="text-gray-600"> {designation} </p>
     </div>
   );
 };

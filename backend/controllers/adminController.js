@@ -35,7 +35,7 @@ const createAdmin = async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    (err);
     return res.status(500).json({
       message: "Something went wrong",
       success: false,
@@ -81,7 +81,7 @@ const loginAdmin = async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    (err);
     return res.status(500).json({
       message: "Something went wrong",
       success: false,
@@ -90,31 +90,50 @@ const loginAdmin = async (req, res) => {
 };
 
 const updateAdminPassword = async (req, res) => {
+  const { id } = req.params;
+  const { oldPassword, newPassword } = req.body;
   try {
-    let { password } = req.body;
-    let { id } = req.params;
-    const hash = await bcrypt.hash(password, 10);
-    let newAdmin = await Admin.findByIdAndUpdate(
-      id,
-      {
-        $set: { password: hash },
-      },
-      { new: true }
-    );
-    if (!newAdmin) {
-      return res.status(200).json({
-        message: "Admin not found",
-        success: false,
-      });
+    const admin = await Admin.findById(id);
+
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found" });
     }
-    // users[userIndex] = { ...users[userIndex], ...req.body };
+
+    // Verify old password
+    (oldPassword, newPassword)
+    (admin.password)
+    const isMatch = await bcrypt.compare(oldPassword, admin.password);
+    (isMatch)
+    if (!isMatch) {
+      return res.status(400).json({ message: "Old password is incorrect" });
+    }
+
+    // Update password
+    admin.password = await bcrypt.hash(newPassword, 10);
+    await admin.save();
     return res.status(200).json({
       message: "Password updated successfully",
       success: true,
-      newAdmin,
+      admin,
     });
   } catch (err) {
-    console.log(err);
+    (err);
+    return res.status(500).json({
+      message: "Something went wrong",
+      success: false,
+    });
+  }
+};
+
+const getAdmin = async (req, res) => {
+  try {
+    const admin = await Admin.find();
+    return res.status(200).json({
+      success: true,
+      message: "Admin fetched successfully",
+      admin,
+    });
+  } catch (err) {
     return res.status(500).json({
       message: "Something went wrong",
       success: false,
@@ -194,6 +213,7 @@ module.exports = {
   createAdmin,
   loginAdmin,
   updateAdminPassword,
+  getAdmin,
   //   getUsers,
   //   getSingleUser,
   //   deleteUser,

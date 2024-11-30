@@ -1,21 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const verifyUser = require("../middlewares/auth");
 const {
   createAdmin,
   loginAdmin,
   updateAdminPassword,
-  //   getSingleUser,
-  //   updateUser,
-  //   deleteUser,
+  getAdmin,
 } = require("../controllers/adminController");
 
 router.post("/admin/create", createAdmin);
 
 router.post("/admin/login", loginAdmin);
 
-router.patch("/admin/update/:id", updateAdminPassword);
+router.patch("/admin/update/:id", verifyUser, updateAdminPassword);
 
-// router.get("/users", getUsers);
+router.get("/admin", getAdmin);
 
 // router.get("/users/:id", getSingleUser);
 

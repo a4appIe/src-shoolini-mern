@@ -23,9 +23,10 @@ const LoginForm = () => {
         `http://localhost:5000/api/v1/admin/login`,
         userData
       );
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      console.log(userData);
+      localStorage.setItem("admin", JSON.stringify(res.data.user));
+      toast.success(res.data.message);
       navigate("/admin/dashboard");
-      return toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {

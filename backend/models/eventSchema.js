@@ -39,4 +39,5 @@ const eventSchema = new mongoose.Schema({
   speakers: [speakerSchema],
 });
 
-module.exports = mongoose.model("Event", eventSchema);
+const Event = mongoose.model("Event", eventSchema);
+module.exports = Event;

@@ -1,10 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { createEvent } = require("../controllers/eventController");
+const {
+  createEvent,
+  updateEvent,
+  getEvents,
+  getSingleEvent,
+} = require("../controllers/eventController");
 const upload = require("../config/multer");
+const verifyUser = require("../middlewares/auth");
 
 router.post(
-  "/admin/event/create",
+  "/event/create",
+  verifyUser,
   upload.fields([
     { name: "cover_image", maxCount: 1 },
     { name: "about_image", maxCount: 1 },
@@ -16,11 +23,11 @@ router.post(
 
 // router.post("/admin/login", loginAdmin);
 
-// router.patch("/admin/update/:id", updateAdminPassword);
+router.patch("/event/update/:id", verifyUser, updateEvent);
 
-// router.get("/users", getUsers);
+router.get("/event", getEvents);
 
-// router.get("/users/:id", getSingleUser);
+router.get("/event/:id", getSingleEvent);
 
 // router.delete("/users/:id", deleteUser);
 

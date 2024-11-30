@@ -3,10 +3,9 @@ import { Outlet, Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
   return (
-    <Link>
       <div className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
         <img
-          src={event.image}
+          src={event.cover_image.imageUrl}
           alt={event.title}
           className="w-full h-52 object-cover"
         />
@@ -17,16 +16,15 @@ const EventCard = ({ event }) => {
           </p>
           <span
             className={`inline-block px-3 py-1 text-sm font-semibold ${
-              event.status === "Ongoing"
+              event.status === "ongoing"
                 ? "bg-green-100 text-green-800"
                 : "bg-gray-100 text-gray-800"
             } rounded-full`}
           >
-            {event.status}
+            {event.visibility}
           </span>
         </div>
       </div>
-    </Link>
   );
 };
 

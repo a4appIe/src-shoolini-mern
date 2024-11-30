@@ -21,7 +21,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/add-event" element={<EventForm />} />
-          <Route path="/event" element={<EventLandingPage />} />
+          <Route path="/event/:id" element={<EventLandingPage />} />
           <Route path="/mentors" element={<ResearchMentors />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<ContactForm />} />
