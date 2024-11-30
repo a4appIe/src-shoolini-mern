@@ -11,6 +11,7 @@ import EventLandingPage from "./pages/EventLandingPage";
 import EventForm from "./pages/EventFrom";
 import { Toaster } from "react-hot-toast";
 import AdminDashboard from "./pages/AdminDashboard";
+import Gallery from "./pages/Gallery";
 
 const App = () => {
   return (
@@ -22,10 +23,10 @@ const App = () => {
           <Route path="/add-event" element={<EventForm />} />
           <Route path="/event" element={<EventLandingPage />} />
           <Route path="/mentors" element={<ResearchMentors />} />
-          <Route path="/gallery" element={<ResearchMentors />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<LoginForm />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
