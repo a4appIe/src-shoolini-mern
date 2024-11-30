@@ -12,6 +12,12 @@ const events = [
 ];
 
 const Events = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
     <>
       <div className="mx-auto mt-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">

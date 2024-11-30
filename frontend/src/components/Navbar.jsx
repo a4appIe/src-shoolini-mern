@@ -8,6 +8,10 @@ import { RxCross2 } from "react-icons/rx";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { token, name } = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : { token: null };
+
   useEffect(() => {
     setIsOpen(false);
   }, []);
@@ -46,7 +50,7 @@ const Navbar = () => {
               }}
             />
           </p>
-          <ul className="flex md:gap-8 sm:gap-4 max-sm:hidden">
+          <ul className="flex md:gap-8 sm:gap-4 max-sm:hidden items-center">
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/"}>Home</Link>
             </li>
@@ -62,6 +66,21 @@ const Navbar = () => {
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/contact"}>Contact</Link>
+            </li>
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
+              <Link to={"/admin/dashboard"}>
+                {token ? (
+                  <div className="bg-black rounded-full">
+                    <img
+                      src={`https://api.dicebear.com/9.x/initials/svg?seed=${name}`}
+                      alt=""
+                      className="h-10 rounded-lg cursor-pointer"
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </Link>
             </li>
           </ul>
         </div>

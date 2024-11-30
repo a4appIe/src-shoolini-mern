@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const MentorCard = ({ isMD, name, desc, img, short }) => {
   return (
-    <div className="book h-[450px] w-full max-w-80 outline my-5 max-sm:h-[400px]">
+    <div className="book h-[450px] w-full max-w-80 outline my-5 max-sm:h-[400px] cursor-help">
       <div className="w-full h-full flex justify-end rounded-r-md">
         <div className="w-[90%]  h-full rounded-lg p-5">
           <p className="text-gray-600">{desc}</p>
@@ -26,7 +26,7 @@ const MentorCard = ({ isMD, name, desc, img, short }) => {
         </div>
       </div>
 
-      <div className="cover flex flex-col h-full items-start overflow-hidden outline p-3 bg-purewhite">
+      <div className="cover flex flex-col h-full items-start overflow-hidden outline p-3 bg-purewhite shadow-[5px_5px_0px_0px_rgb(0,0,0)]">
         <div className="h-[70%] w-full flex overflow-hidden">
           <img
             src={img}

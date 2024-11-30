@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HERO_BG from "/bg-img.jpg";
 
 const NotFound = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
     <div
       className="min-h-[90.8vh] bg-gradient-to-b from-red-500 to-red-200 flex flex-col justify-center items-center text-center p-5"

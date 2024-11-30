@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaFolderOpen, FaFileAlt, FaUpload, FaBook } from "react-icons/fa";
 import HERO_BG from "/bg-img.jpg";
 import HomeLink from "../components/HomeLink";
 
 const Home = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
     <>
       <div
@@ -68,19 +74,19 @@ const Home = () => {
       {/* INSTANT_LINKS */}
       <div className="flex flex-wrap">
         <HomeLink
-          link={"/about"}
+          link={"/events"}
           text={"Events"}
           color={"white"}
           bgclr={"green"}
         />
         <HomeLink
-          link={"/events"}
-          text={"ABOUT"}
+          link={"/gallery"}
+          text={"GALLERY"}
           color={"white"}
           bgclr={"darkRed"}
         />
         <HomeLink
-          link={"/research-mentors"}
+          link={"/mentors"}
           text={"MENTORS"}
           color={"white"}
           bgclr={"orange"}

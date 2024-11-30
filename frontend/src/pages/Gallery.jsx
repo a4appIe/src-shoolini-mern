@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Gallery.css";
 
 const Gallery = () => {
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+    useEffect(() => {
+      scrollToTop();
+    }, []);
   return (
     // <!-- Photo Grid -->
     <div className="row w-[80%] mx-auto m-2">

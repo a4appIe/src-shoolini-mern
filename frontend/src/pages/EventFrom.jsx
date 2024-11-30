@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import HERO_BG from "/bg-img.jpg";
 
 const EventForm = () => {
   const [speakers, setSpeakers] = useState([
@@ -103,10 +104,26 @@ const EventForm = () => {
     });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
-      <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+    <div
+      className="min-h-screen bg-gray-100 flex items-center justify-center p-5 py-10"
+      style={{
+        backgroundImage: `url("${HERO_BG}")`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="w-full max-w-4xl bg-white p-8 shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-darkRed">
           Create Event
         </h2>
         <form
@@ -370,7 +387,7 @@ const EventForm = () => {
           <div className="col-span-1 md:col-span-2 text-center">
             <button
               type="submit"
-              className="w-full md:w-auto px-6 py-3 bg-blue-500 text-white rounded-md font-bold hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full md:w-auto px-6 py-3 bg-darkRed text-white rounded-md font-bold hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
             >
               Submit
             </button>

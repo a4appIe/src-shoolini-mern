@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import ContactForm from "./pages/ContactForm";
 import NotFound from "./pages/NotFound";
 import ResearchMentors from "./pages/ResearchMentors";
 import Events from "./pages/Events";
@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/event" element={<EventLandingPage />} />
           <Route path="/mentors" element={<ResearchMentors />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<ContactForm />} />
           <Route path="/admin" element={<LoginForm />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />

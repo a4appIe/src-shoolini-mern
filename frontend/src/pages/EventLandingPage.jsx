@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SpeakerCard from "../components/SpeakerCard";
 import HERO_BG from "/bg-img.jpg";
 
 const EventLandingPage = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
     <div
       style={{
