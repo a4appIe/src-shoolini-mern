@@ -8,8 +8,8 @@ import { RxCross2 } from "react-icons/rx";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { token, name } = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
+  const { token, name } = localStorage.getItem("admin")
+    ? JSON.parse(localStorage.getItem("admin"))
     : { token: null };
 
   useEffect(() => {
