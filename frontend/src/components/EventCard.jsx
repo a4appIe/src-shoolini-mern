@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
   return (
-      <div className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+      <div className="flex flex-col w-[350px] max-sm:w-[270px]  bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
         <img
           src={event.cover_image.imageUrl}
           alt={event.title}

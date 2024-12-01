@@ -4,20 +4,23 @@ import HERO_BG from "/bg-img.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const events = [
-  {
-    id: 1,
-    title: "Web Development Workshop",
-    date: "2024-12-15T10:00:00Z",
-    status: "Ongoing",
-    image: "https://via.placeholder.com/400x200",
-  },
-];
-
 const Events = () => {
   const [event, setEvent] = useState([]);
+  const pastEvents = [];
+  const ongoingEvents = [];
+  const upcomingEvents = [];
 
-  console.log(event);
+  event.forEach((event) => {
+    if (event?.visibility === "past") {
+      pastEvents.push(event);
+    } else if (event?.visibility === "upcoming") {
+      upcomingEvents.push(event);
+    } else {
+      ongoingEvents.push(event);
+    }
+  });
+  console.log(pastEvents, ongoingEvents, upcomingEvents);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -39,7 +42,8 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="pb-10"
+    <div
+      className="pb-10 min-h-[91vh]"
       style={{
         backgroundImage: `url("${HERO_BG}")`,
         backgroundPosition: "center",
@@ -48,36 +52,49 @@ const Events = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      <div className="mx-auto p-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">
-        <h1 className="text-4xl font-bold text-center mb-6 max-sm:text-2xl tracking-tighter">
-          Ongoing events 🎃
-        </h1>
-        <div className="grid max-sm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
-          {event.map((e) => (
-            <Link to={`/event/${e._id}`}><EventCard key={e._id} event={e} /></Link>
-          ))}
+      {ongoingEvents.length > 0 && (
+        <div className="mx-auto pt-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">
+          <h1 className="text-4xl font-bold text-center mb-6 max-sm:text-2xl tracking-tighter">
+            Ongoing events 🎃
+          </h1>
+          <div className="grid max-sm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
+            {ongoingEvents.map((e) => (
+              <Link to={`/event/${e._id}`}>
+                <EventCard key={e._id} event={e} />
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="mx-auto mt-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">
-        <h1 className="text-4xl font-bold text-center mb-6 max-sm:text-2xl tracking-tighter">
-          Upcoming events ✅
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
-          {event.map((e) => (
-            <Link><EventCard key={e._id} event={e} /></Link>
-          ))}
+      )}
+      {upcomingEvents.length > 0 && (
+        <div className="mx-auto pt-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">
+          <h1 className="text-4xl font-bold text-center mb-6 max-sm:text-2xl tracking-tighter">
+            Upcoming events ✅
+          </h1>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
+            {upcomingEvents.map((e) => (
+              <Link to={`/event/${e._id}`}>
+                <EventCard key={e._id} event={e} />
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="mx-auto mt-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">
-        <h1 className="text-4xl font-bold text-center mb-6 max-sm:text-2xl tracking-tighter">
-          Past events ❌
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
-          {event.map((e) => (
-            <Link><EventCard key={e._id} event={e} /></Link>
-          ))}
+      )}
+
+      {pastEvents.length > 0 && (
+        <div className="mx-auto pt-14 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl">
+          <h1 className="text-4xl font-bold text-center mb-6 max-sm:text-2xl tracking-tighter">
+            Past events ❌
+          </h1>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
+            {pastEvents.map((e) => (
+              <Link to={`/event/${e._id}`}>
+                <EventCard key={e._id} event={e} />
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
