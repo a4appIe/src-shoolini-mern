@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import SRC_LOGO from "/src_logo.png";
 import SHOOLINI_LOGO from "/shoolini-logo.png";
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import { AuthContext } from "./AuthContext";
 
 const Navbar = () => {
+  const { isUserLoggedIn, data, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const { token, name } = localStorage.getItem("admin")
     ? JSON.parse(localStorage.getItem("admin"))
@@ -15,6 +18,13 @@ const Navbar = () => {
   useEffect(() => {
     setIsOpen(false);
   }, []);
+
+  useEffect(() => {
+    const admin = JSON.parse(localStorage.getItem("admin"));
+    if (admin) {
+      setIsLogin(true);
+    }
+  }, [name]);
 
   const handleNavItemClick = () => {
     setIsOpen(false);
@@ -69,11 +79,11 @@ const Navbar = () => {
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/admin/dashboard"}>
-                {token ? (
+                {isUserLoggedIn ? (
                   <div className="bg-black rounded-full">
                     <img
                       src={`https://api.dicebear.com/9.x/initials/svg?seed=${name}`}
-                      alt=""
+                      alt="ftfhgf"
                       className="h-10 rounded-lg cursor-pointer"
                     />
                   </div>

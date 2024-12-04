@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
 import { IoCreateSharp } from "react-icons/io5";
 import { FaSignOutAlt } from "react-icons/fa";
 import { MdSecurityUpdateWarning } from "react-icons/md";
-import axios  from "axios";
+import axios from "axios";
 import HERO_BG from "/bg-img.jpg";
+import { AuthContext } from "../components/AuthContext";
 
 const AdminDashboard = () => {
+  const { isUserLoggedIn, data, logout, login } = useContext(AuthContext);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,20 +26,18 @@ const AdminDashboard = () => {
   useEffect(() => {
     scrollToTop();
   }, []);
+
   const navigate = useNavigate();
-  const { token, id } = localStorage.getItem("admin")
-    ? JSON.parse(localStorage.getItem("admin"))
-    : { token: null };
 
   useEffect(() => {
-    if (!token) {
+    if (!isUserLoggedIn) {
       toast.error("Please login to continue");
       navigate("/admin");
     }
-  }, [token]);
+  }, []);
 
   const handleSignOut = () => {
-    localStorage.removeItem("admin");
+    logout();
     navigate("/admin");
   };
 

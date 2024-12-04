@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../components/AuthContext";
 
 const LoginForm = () => {
+  const { isUserLoggedIn, data, logout, login } = useContext(AuthContext);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -23,8 +25,7 @@ const LoginForm = () => {
         `http://localhost:5000/api/v1/admin/login`,
         userData
       );
-      console.log(userData);
-      localStorage.setItem("admin", JSON.stringify(res.data.user));
+      login(res.data.user);
       toast.success(res.data.message);
       navigate("/admin/dashboard");
     } catch (error) {
@@ -36,6 +37,16 @@ const LoginForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const admin = JSON.parse(localStorage.getItem("admin"));
+    if (admin) {
+      const { token } = admin;
+      if (token) {
+        navigate("/admin/dashboard");
+      }
+    }
+  });
 
   return (
     <div className="flex items-center justify-center min-h-[92vh] bg-[#F8F9FA]">
