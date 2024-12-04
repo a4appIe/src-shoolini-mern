@@ -93,8 +93,7 @@ const Home = () => {
           bgclr={"orange"}
         />
       </div>
-      <div className="grid md:grid-cols-3 lg:grid-cols-3 place-items-center flex-wrap mt-5 w-[90%] bg-green mx-auto max-sm:grid-cols-1 sm:grid-cols-2">
-        <PricingCard />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 place-items-center mt-5 w-[90%] mx-auto">
         <PricingCard />
         <PricingCard />
       </div>
