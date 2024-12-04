@@ -98,10 +98,6 @@ const updateAdminPassword = async (req, res) => {
     if (!admin) {
       return res.status(404).json({ message: "Admin not found" });
     }
-
-    // Verify old password
-    (oldPassword, newPassword)
-    (admin.password)
     const isMatch = await bcrypt.compare(oldPassword, admin.password);
     (isMatch)
     if (!isMatch) {
@@ -117,7 +113,7 @@ const updateAdminPassword = async (req, res) => {
       admin,
     });
   } catch (err) {
-    (err);
+    console.log(err)
     return res.status(500).json({
       message: "Something went wrong",
       success: false,

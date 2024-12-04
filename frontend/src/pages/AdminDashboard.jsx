@@ -10,6 +10,7 @@ import { AuthContext } from "../components/AuthContext";
 
 const AdminDashboard = () => {
   const { isUserLoggedIn, data, logout, login } = useContext(AuthContext);
+  const {token, id} = data;
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,7 +61,8 @@ const AdminDashboard = () => {
         );
         toast.success(res.data.message);
       } catch (error) {
-        toast.error(error.response.data.message);
+        // toast.error(error);
+        console.log(error)
       }
     }
   };
@@ -126,9 +128,10 @@ const AdminDashboard = () => {
               >
                 Cancel
               </button>
-              <div onClick={handleUpdatePassword}>
+              <div>
                 <button
                   onClick={() => {
+                    handleUpdatePassword();
                     closeModal();
                   }}
                   className="ml-3 px-4 py-2 bg-darkRed text-white rounded-md shadow"
