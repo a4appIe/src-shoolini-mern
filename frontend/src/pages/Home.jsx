@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { FaFolderOpen, FaFileAlt, FaUpload, FaBook } from "react-icons/fa";
 import HERO_BG from "/bg-img.jpg";
 import HomeLink from "../components/HomeLink";
+import PricingCard from "../components/PricingCard";
 
 const Home = () => {
   const scrollToTop = () => {
@@ -91,6 +92,11 @@ const Home = () => {
           color={"white"}
           bgclr={"orange"}
         />
+      </div>
+      <div className="grid md:grid-cols-3 lg:grid-cols-3 place-items-center flex-wrap mt-5 w-[90%] bg-green mx-auto max-sm:grid-cols-1 sm:grid-cols-2">
+        <PricingCard />
+        <PricingCard />
+        <PricingCard />
       </div>
     </>
   );

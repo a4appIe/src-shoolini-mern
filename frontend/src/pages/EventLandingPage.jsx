@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SpeakerCard from "../components/SpeakerCard";
 import HERO_BG from "/bg-img.jpg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { AuthContext } from "../components/AuthContext";
 
 const EventLandingPage = () => {
   const [adminData, setAdminData] = useState(null);
@@ -12,10 +13,9 @@ const EventLandingPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { id, token } = localStorage.getItem("admin")
-    ? JSON.parse(localStorage.getItem("admin"))
-    : null;
-  const admin = adminData?._id == id ? true : false;
+  const { isUserLoggedIn, data, logout } = useContext(AuthContext);
+
+  // const admin = adminData?._id == id ? true : false;
 
   const [visibility, setVisibility] = useState("");
 
@@ -149,7 +149,7 @@ const EventLandingPage = () => {
       )}
       {/* // ------------------------------------------------------------- */}
       <div className="backdrop-blur-sm">
-        {admin && (
+        {isUserLoggedIn && (
           <p
             className="text-white px-7 py-3 w-fit mx-auto rounded-full bg-darkRed text-lg cursor-pointer relative top-10 font-md max-sm:text-xl"
             onClick={openModal}

@@ -1,14 +1,15 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
   return (
       <div className="flex flex-col w-[350px] max-sm:w-[270px]  bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+        <div className="w-full h-52 overflow-hidden">
         <img
           src={event.cover_image.imageUrl}
           alt={event.title}
-          className="w-full h-52 object-cover"
+          className="w-full h-full object-cover hover:scale-125 duration-500"
         />
+        </div>
         <div className="p-4">
           <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
           <p className="text-gray-500 mb-4">
