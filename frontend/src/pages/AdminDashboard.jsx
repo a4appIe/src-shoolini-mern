@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
 import { IoCreateSharp } from "react-icons/io5";
@@ -7,9 +7,11 @@ import { MdSecurityUpdateWarning } from "react-icons/md";
 import axios from "axios";
 import HERO_BG from "/bg-img.jpg";
 import { AuthContext } from "../components/AuthContext";
+import mentors from "../utils/data.js"
 
 const AdminDashboard = () => {
-  const { isUserLoggedIn, data, logout, login } = useContext(AuthContext);
+  console.log(mentors)
+  const { isUserLoggedIn, data, logout } = useContext(AuthContext);
   const {token, id} = data;
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -39,7 +41,7 @@ const AdminDashboard = () => {
 
   const handleSignOut = () => {
     logout();
-    navigate("/admin");
+    navigate("/");
   };
 
   const handleUpdatePassword = async () => {
@@ -66,6 +68,7 @@ const AdminDashboard = () => {
       }
     }
   };
+
 
   return (
     <>
