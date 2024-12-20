@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import SpeakerCard from "../components/SpeakerCard";
 import HERO_BG from "/bg-img.jpg";
@@ -62,7 +64,7 @@ const EventLandingPage = () => {
         { visibility },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${data.token}`,
           },
         }
       );
@@ -212,6 +214,7 @@ const EventLandingPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
               {event?.speakers?.map((speaker) => (
                 <SpeakerCard
+                  key={speaker.name}
                   name={speaker?.name}
                   designation={speaker?.designation}
                   image={speaker?.image?.imageUrl}
