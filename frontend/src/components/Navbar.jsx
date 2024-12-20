@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import SRC_LOGO from "/src_logo.png";
@@ -70,9 +71,12 @@ const Navbar = () => {
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/mentors"}>Mentors</Link>
             </li>
+            <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
+              <Link to={"/leadership"}>Leadership</Link>
+            </li>
 
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
-              <Link to={"/gallery"}>Gallery</Link>
+              <Link to={"/pricing"}>Pricing</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/contact"}>Contact</Link>

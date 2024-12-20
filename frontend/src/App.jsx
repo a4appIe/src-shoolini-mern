@@ -3,14 +3,16 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ContactForm from "./pages/ContactForm";
 import NotFound from "./pages/NotFound";
-import ResearchMentors from "./pages/ResearchMentors";
+import Leadership from "./pages/Leadership";
 import Events from "./pages/Events";
 import LoginForm from "./pages/LoginForm";
 import EventLandingPage from "./pages/EventLandingPage";
 import EventForm from "./pages/EventFrom";
 import { Toaster } from "react-hot-toast";
 import AdminDashboard from "./pages/AdminDashboard";
-import Gallery from "./pages/Gallery";
+import Pricing from "./pages/Pricing";
+import Footer from "./components/Footer";
+import Mentors from "./pages/Mentors";
 
 const App = () => {
   return (
@@ -21,14 +23,16 @@ const App = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/add-event" element={<EventForm />} />
           <Route path="/event/:id" element={<EventLandingPage />} />
-          <Route path="/mentors" element={<ResearchMentors />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/mentors" element={<Mentors />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/admin" element={<LoginForm />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <Footer/>
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );

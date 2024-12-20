@@ -26,7 +26,7 @@ const MentorCard = ({ name, desc, img, short }) => {
         </div>
       </div>
 
-      <div className="cover flex flex-col h-full items-start overflow-hidden outline p-3 bg-purewhite shadow-[5px_5px_0px_0px_rgb(0,0,0)]">
+      <div className="cover flex flex-col h-full items-start overflow-hidden outline p-3 bg-purewhite shadow-[5px_5px_0px_0px_rgb(0,0,0)] rounded-lg">
         <div className="h-[70%] w-full flex overflow-hidden">
           <img
             src={img}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
@@ -7,10 +8,8 @@ import { MdSecurityUpdateWarning } from "react-icons/md";
 import axios from "axios";
 import HERO_BG from "/bg-img.jpg";
 import { AuthContext } from "../components/AuthContext";
-import mentors from "../utils/data.js"
 
 const AdminDashboard = () => {
-  console.log(mentors)
   const { isUserLoggedIn, data, logout } = useContext(AuthContext);
   const {token, id} = data;
   const [oldPassword, setOldPassword] = useState("");
@@ -63,8 +62,7 @@ const AdminDashboard = () => {
         );
         toast.success(res.data.message);
       } catch (error) {
-        // toast.error(error);
-        console.log(error)
+        toast.error(error.response.data.message);
       }
     }
   };

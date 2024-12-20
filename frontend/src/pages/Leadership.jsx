@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import MentorCard from "../components/MentorCard";
+import MentorCard from "../components/MentorCard.jsx";
 import HERO_BG from "/bg-img.jpg";
 // import DR_PANKAJ_VAIDYA from "/pankaj_vaidya.jpg";
 import mentors from "../utils/data.js";
 import DUMMY from "/dummy.jpg"
 
-const ResearchMentors = () => {
+const Leadership = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -35,9 +35,6 @@ const ResearchMentors = () => {
               key={mentor.name}
               name={mentor.name}
               short={mentor.title}
-              desc={
-                "Dr Pankaj Vaidya is a highly esteemed academician and prominent researcher specializing in Artificial Intelligence (AI) and Machine Learning (ML). Currently holding the position of Professor at Shoolini University"
-              }
               img={mentor.image ? mentor.image : DUMMY}
             />
           ))}
@@ -57,9 +54,6 @@ const ResearchMentors = () => {
               key={mentor.name}
               name={mentor.name}
               short={mentor.title}
-              desc={
-                "Dr Pankaj Vaidya is a highly esteemed academician and prominent researcher specializing in Artificial Intelligence (AI) and Machine Learning (ML). Currently holding the position of Professor at Shoolini University"
-              }
               img={mentor.image ? mentor.image : DUMMY}
             />
           ))}
@@ -79,9 +73,6 @@ const ResearchMentors = () => {
               key={mentor.name}
               name={mentor.name}
               short={mentor.title}
-              desc={
-                "Dr Pankaj Vaidya is a highly esteemed academician and prominent researcher specializing in Artificial Intelligence (AI) and Machine Learning (ML). Currently holding the position of Professor at Shoolini University"
-              }
               img={mentor.image ? mentor.image : DUMMY}
             />
           ))}
@@ -101,9 +92,6 @@ const ResearchMentors = () => {
               key={mentor.name}
               name={mentor.name}
               short={mentor.title}
-              desc={
-                "Dr Pankaj Vaidya is a highly esteemed academician and prominent researcher specializing in Artificial Intelligence (AI) and Machine Learning (ML). Currently holding the position of Professor at Shoolini University"
-              }
               img={mentor.image ? mentor.image : DUMMY}
             />
           ))}
@@ -123,9 +111,6 @@ const ResearchMentors = () => {
               key={mentor.name}
               name={mentor.name}
               short={mentor.title}
-              desc={
-                "Dr Pankaj Vaidya is a highly esteemed academician and prominent researcher specializing in Artificial Intelligence (AI) and Machine Learning (ML). Currently holding the position of Professor at Shoolini University"
-              }
               img={mentor.image ? mentor.image : DUMMY}
             />
           ))}
@@ -135,4 +120,4 @@ const ResearchMentors = () => {
   );
 };
 
-export default ResearchMentors;
+export default Leadership;

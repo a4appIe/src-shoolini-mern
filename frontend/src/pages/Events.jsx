@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import EventCard from "../components/EventCard";
 import HERO_BG from "/bg-img.jpg";
@@ -59,8 +60,8 @@ const Events = () => {
           </h1>
           <div className="grid max-sm:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
             {ongoingEvents.map((e) => (
-              <Link to={`/event/${e._id}`}>
-                <EventCard key={e._id} event={e} />
+              <Link to={`/event/${e._id}`} key={e._id}>
+                <EventCard event={e} />
               </Link>
             ))}
           </div>
@@ -73,8 +74,8 @@ const Events = () => {
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
             {upcomingEvents.map((e) => (
-              <Link to={`/event/${e._id}`}>
-                <EventCard key={e._id} event={e} />
+              <Link to={`/event/${e._id}`} key={e._id}>
+                <EventCard event={e} />
               </Link>
             ))}
           </div>
@@ -88,8 +89,8 @@ const Events = () => {
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-self-center">
             {pastEvents.map((e) => (
-              <Link to={`/event/${e._id}`}>
-                <EventCard key={e._id} event={e} />
+              <Link to={`/event/${e._id}`} key={e._id}>
+                <EventCard event={e} />
               </Link>
             ))}
           </div>
