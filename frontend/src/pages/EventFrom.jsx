@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +53,7 @@ const EventForm = () => {
       formDatax.append("about_image", formData.aboutImage);
 
     // Append speakers' file data
-    speakers.forEach((speaker, index) => {
+    speakers.forEach((speaker) => {
       if (speaker.image) {
         formDatax.append("speakers", speaker.image); // All speaker images under the same field
       }
