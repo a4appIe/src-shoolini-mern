@@ -8,17 +8,14 @@ const createEvent = async (req, res) => {
       title,
       agenda,
       desc,
-      category,
       venue,
       time,
       visibility,
       date,
-      host_name,
-      host_designation,
       speakersData,
     } = req.body;
 
-    const { cover_image, about_image, host_image, speakers } = req.files;
+    const { cover_image, host_image, speakers } = req.files;
     // Parse speakers metadata
     const speakersMetadata = JSON.parse(speakersData);
 
@@ -26,13 +23,10 @@ const createEvent = async (req, res) => {
       !title ||
       !agenda ||
       !desc ||
-      !category ||
       !visibility ||
       !venue ||
       !time ||
       !date ||
-      !host_name ||
-      !host_designation ||
       !speakersData
     ) {
       return res
@@ -41,17 +35,9 @@ const createEvent = async (req, res) => {
     }
 
     // IMAGE UPLOAD -----------------
-    const aboutImage = await uploadImage(
-      `data:image/jpeg;base64,${about_image[0].buffer.toString("base64")}`,
-      "about_images"
-    );
     const coverImage = await uploadImage(
       `data:image/jpeg;base64,${cover_image[0].buffer.toString("base64")}`,
       "cover_images"
-    );
-    const hostImage = await uploadImage(
-      `data:image/jpeg;base64,${host_image[0].buffer.toString("base64")}`,
-      "host_images"
     );
 
     let speakersArray = [];
@@ -76,23 +62,10 @@ const createEvent = async (req, res) => {
       title,
       agenda,
       desc,
-      category,
       venue,
       time,
       date,
       visibility,
-      host: {
-        name: host_name,
-        designation: host_designation,
-        image: {
-          imageUrl: hostImage?.secure_url,
-          imageId: hostImage?.public_id,
-        },
-      },
-      about_image: {
-        imageUrl: aboutImage?.secure_url,
-        imageId: aboutImage?.public_id,
-      },
       cover_image: {
         imageUrl: coverImage?.secure_url,
         imageId: coverImage?.public_id,

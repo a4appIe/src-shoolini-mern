@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import HERO_BG from "/bg-img.jpg";
 
 const ContactForm = () => {
   const scrollToTop = () => {
@@ -30,15 +30,14 @@ const ContactForm = () => {
 
   return (
     <div
-      className="min-h-[91vh] bg-gray-100 flex items-center justify-center p-4"
+      className="min-h-[91vh] bg-gray-800 flex items-center justify-center p-4"
       style={{
-        backgroundImage: `url("${HERO_BG}")`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <div className="bg-white shadow-[-8px_-8px_0px_0px_rgb(0,0,0)] rounded-br-3xl p-8 max-w-lg w-full">
+      <div className="bg-white rounded-md p-8 max-w-lg w-full">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           <span className="text-darkRed">Contact</span> Us
         </h2>

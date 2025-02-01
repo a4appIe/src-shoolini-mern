@@ -231,8 +231,8 @@ const data = {
     },
     {
       name: "Dr. Ravi Kant",
-      image:
-        "https://media.licdn.com/dms/image/v2/C4E03AQESYPqHnHEqQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1639403763362?e=1740009600&v=beta&t=haD5MELKCtuUmWaNP4bXupyzo8QfRAeYrgAhpIz_79E",
+      // image:
+      //   "https://media.licdn.com/dms/image/v2/C4E03AQESYPqHnHEqQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1639403763362?e=1740009600&v=beta&t=haD5MELKCtuUmWaNP4bXupyzo8QfRAeYrgAhpIz_79E",
       title: "Professor",
     },
     {
@@ -260,8 +260,8 @@ const data = {
     },
     {
       name: "Mr. Anitya Gupta",
-      image:
-        "https://media.licdn.com/dms/image/v2/C4D03AQFLnC5d-7yf6Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1625547261472?e=1740009600&v=beta&t=cs_EEgGVu9lbrK_tGLCbaR6xFQmy03xyLbDK2_hxVu8",
+      // image:
+      //   "https://media.licdn.com/dms/image/v2/C4D03AQFLnC5d-7yf6Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1625547261472?e=1740009600&v=beta&t=cs_EEgGVu9lbrK_tGLCbaR6xFQmy03xyLbDK2_hxVu8",
       title: "Ramanujan Research Associate",
     },
   ],

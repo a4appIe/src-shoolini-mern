@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HERO_BG from "/bg-img.jpg";
@@ -31,7 +32,7 @@ const NotFound = () => {
         Page Not Found
       </h2>
       <p className="text-lg md:text-xl text-darkRed/80 mb-6">
-        Sorry, the page you're looking for doesn't exist.
+        Sorry, the page you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link
         to="/"

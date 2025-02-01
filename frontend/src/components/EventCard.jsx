@@ -1,32 +1,57 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import { MdDelete } from "react-icons/md";
+import { AuthContext } from "./AuthContext";
+import { useContext } from "react";
 
-const EventCard = ({ event }) => {
+export default function EventCard({ event }) {
+  const { isUserLoggedIn } = useContext(AuthContext);
+  function handleDelete() {}
   return (
-      <div className="flex flex-col w-[350px] max-sm:w-[270px]  bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-        <div className="w-full h-52 overflow-hidden">
-        <img
-          src={event.cover_image.imageUrl}
-          alt={event.title}
-          className="w-full h-full object-cover hover:scale-125 duration-500"
-        />
+    <article className="max-w-4xl bg-white rounded-lg shadow-md overflow-hidden mb-5 outline outline-darkRed">
+      <div className="flex flex-col md:flex-row max-md:flex-col-reverse">
+        <div className="p-6 flex-1">
+          <div className="space-y-4">
+            {/* Title and Subtitle */}
+            <div className="space-y-2">
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+                {event.title}
+              </h1>
+              <p className="text-base md:text-lg text-muted-foreground">
+                {event.agenda}
+              </p>
+            </div>
+            {isUserLoggedIn ? (
+              <button
+                className="text-red bg-gray-300 text-3xl p-1 rounded-md outline"
+                onClick={() => {
+                  handleDelete();
+                }}
+              >
+                <MdDelete />
+              </button>
+            ) : (
+              <span
+                className={`inline-block px-3 py-1 text-sm font-semibold ${
+                  event.visibility == "ongoing"
+                    ? "bg-green text-white"
+                    : "bg-red text-white"
+                } rounded-full`}
+              >
+                {event.visibility}
+              </span>
+            )}
+          </div>
         </div>
-        <div className="p-4">
-          <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-          <p className="text-gray-500 mb-4">
-            {new Date(event.date).toDateString()}
-          </p>
-          <span
-            className={`inline-block px-3 py-1 text-sm font-semibold ${
-              event.status === "ongoing"
-                ? "bg-green-100 text-green-800"
-                : "bg-gray-100 text-gray-800"
-            } rounded-full`}
-          >
-            {event.visibility}
-          </span>
+
+        {/* Code Editor Preview */}
+        <div className="md:w-1/3 h-48 md:h-auto">
+          <img
+            src={event.cover_image.imageUrl}
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
+    </article>
   );
-};
-
-export default EventCard;
+}

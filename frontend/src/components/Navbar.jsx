@@ -55,13 +55,13 @@ const Navbar = () => {
           {/* { HAMBURGER_MENU_ICON } */}
           <p>
             <MdMenu
-              className="cursor-pointer text-2xl sm:hidden"
+              className="cursor-pointer text-2xl lg:hidden"
               onClick={() => {
                 setIsOpen((prev) => !prev);
               }}
             />
           </p>
-          <ul className="flex md:gap-8 sm:gap-4 max-sm:hidden items-center">
+          <ul className="flex md:gap-8 sm:gap-4 max-lg:hidden items-center">
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
               <Link to={"/"}>Home</Link>
             </li>
@@ -87,7 +87,7 @@ const Navbar = () => {
                   <div className="bg-black rounded-full">
                     <img
                       src={`https://api.dicebear.com/9.x/initials/svg?seed=${name}`}
-                      alt="ftfhgf"
+                      alt="Dashboard"
                       className="h-10 rounded-lg cursor-pointer"
                     />
                   </div>
@@ -99,8 +99,8 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* MOBILE MENU */}
       </nav>
+        {/* MOBILE MENU */}
       <div
         className={`flex flex-col bg-yellow-200 h-screen w-screen text-2xl fixed top-0 p-3 gap-8 z-10 ${
           isOpen ? "block" : "hidden"

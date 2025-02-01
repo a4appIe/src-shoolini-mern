@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import HERO_BG from "/bg-img.jpg";
 
 const EventForm = () => {
   const { token } = localStorage.getItem("admin")
@@ -126,17 +125,8 @@ const EventForm = () => {
   }, [token]);
 
   return (
-    <div
-      className="min-h-screen bg-gray-100 flex items-center justify-center p-5 py-10"
-      style={{
-        backgroundImage: `url("${HERO_BG}")`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      <div className="w-full max-w-4xl bg-white p-8 shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl">
+    <div className="min-h-screen bg-black flex items-center justify-center p-5 py-10">
+      <div className="w-full max-w-4xl bg-white p-8 rounded-md">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-darkRed">
           Create Event
         </h2>
@@ -179,36 +169,14 @@ const EventForm = () => {
             <label htmlFor="agenda" className="block text-gray-700 font-medium">
               Agenda
             </label>
-            <textarea
+            <input
+              type="text"
               id="agenda"
               name="agenda"
-              rows="3"
               placeholder="Enter event agenda"
               className="w-full mt-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               onChange={handleFormDataChange}
-            ></textarea>
-          </div>
-
-          {/* Category */}
-          <div>
-            <label
-              htmlFor="category"
-              className="block text-gray-700 font-medium"
-            >
-              Category
-            </label>
-            <select
-              id="category"
-              name="category"
-              className="w-full mt-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              onChange={handleFormDataChange}
-            >
-              <option value="">Select category</option>
-              <option value="workshop">Workshop</option>
-              <option value="conference">Conference</option>
-              <option value="seminar">Seminar</option>
-              <option value="webinar">Webinar</option>
-            </select>
+            ></input>
           </div>
 
           {/* Venue */}
@@ -272,55 +240,11 @@ const EventForm = () => {
             />
           </div>
 
-          {/* About Image */}
-          <div className="col-span-1 md:col-span-2">
-            <label
-              htmlFor="aboutImage"
-              className="block text-gray-700 font-medium"
-            >
-              About Image
-            </label>
-            <input
-              id="aboutImage"
-              name="aboutImage"
-              type="file"
-              accept="image/*"
-              className="w-full mt-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              onChange={handleFormDataChange}
-            />
-          </div>
-
-          {/* Host Section */}
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-lg font-medium text-gray-700 mb-3">
-              Host Information
-            </h3>
-            <input
-              type="text"
-              name="hostName"
-              placeholder="Host Name"
-              className="w-full mt-2 mb-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              onChange={handleFormDataChange}
-            />
-            <input
-              type="text"
-              name="hostDesignation"
-              placeholder="Host Designation"
-              className="w-full mb-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              onChange={handleFormDataChange}
-            />
-            <input
-              type="file"
-              name="hostImage"
-              accept="image/*"
-              className="w-full mb-4 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              onChange={handleFormDataChange}
-            />
-          </div>
-
           {/* Dynamic Speakers */}
           <div className="col-span-1 md:col-span-2">
-            <label className="block text-gray-700 font-medium">Speakers</label>
+            <label className="block text-gray-700 font-medium mb-2">
+              Speakers
+            </label>
             {speakers.map((speaker, index) => (
               <div
                 key={index}
@@ -360,7 +284,7 @@ const EventForm = () => {
                 </div>
                 <button
                   type="button"
-                  className="w-full sm:w-auto text-red-500 font-bold bg-transparent hover:bg-red-100 p-2 rounded-md"
+                  className="w-full sm:w-auto text-red font-bold bg-transparent hover:bg-red-100 p-2 rounded-md hover:underline"
                   onClick={() => removeSpeaker(index)}
                 >
                   Remove
@@ -391,9 +315,9 @@ const EventForm = () => {
               onChange={handleFormDataChange}
             >
               <option value="">Select visibility</option>
-              <option value="ongoing">ongoing</option>
-              <option value="upcoming">upcoming</option>
-              <option value="past">past</option>
+              <option value="ongoing">Ongoing</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="past">Past</option>
             </select>
           </div>
 

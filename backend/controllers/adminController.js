@@ -137,80 +137,9 @@ const getAdmin = async (req, res) => {
   }
 };
 
-// const getUsers = async (req, res) => {
-//   try {
-//     const users = await User.find().populate({
-//       path: "blogs",
-//       select: "-creator",
-//     });
-//     return res.status(200).json({
-//       success: true,
-//       message: "Users fetched successfully",
-//       users,
-//     });
-//   } catch (err) {
-//     return res.status(500).json({
-//       message: "Something went wrong",
-//       success: false,
-//     });
-//   }
-// };
-
-// const getSingleUser = async (req, res) => {
-//   try {
-//     let { id } = req.params;
-//     let user = await User.findById(id).populate({
-//       path: "blogs",
-//     });
-//     if (!user) {
-//       return res.status(200).json({
-//         message: "User not found",
-//         success: false,
-//       });
-//     }
-//     return res.status(200).json({
-//       message: "User fetched successfully",
-//       success: true,
-//       user,
-//     });
-//   } catch (err) {
-//     return res.status(500).json({
-//       message: "Something went wrong",
-//       success: false,
-//     });
-//   }
-// };
-
-// const deleteUser = async (req, res) => {
-//   try {
-//     let { id } = req.params;
-//     const delUser = await User.findByIdAndDelete(id);
-//     if (!delUser) {
-//       return res.status(200).json({
-//         message: "User not found",
-//         success: false,
-//       });
-//     }
-
-//     return res.status(200).json({
-//       message: "User deleted successfully",
-//       success: true,
-//       delUser,
-//     });
-//   } catch (err) {
-//     return res.status(500).json({
-//       message: "Something went wrong",
-//       success: false,
-//     });
-//   }
-// };
-
 module.exports = {
   createAdmin,
   loginAdmin,
   updateAdminPassword,
-  getAdmin,
-  //   getUsers,
-  //   getSingleUser,
-  //   deleteUser,
+  getAdmin
 };

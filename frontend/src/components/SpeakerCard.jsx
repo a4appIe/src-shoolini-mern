@@ -1,17 +1,16 @@
 /* eslint-disable react/prop-types */
-
-const SpeakerCard = ({name, designation, image}) => {
+export default function SpeakerCard({ speaker }) {
   return (
-    <div className="bg-gray-400 p-6 flex flex-col justify-center shadow-[6px_6px_0_0_rgb(0,0,0)] rounded-tl-xl">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden text-center">
       <img
-        src={image}
-        alt=""
-        className="w-24 h-24 rounded-full mb-4 mx-auto object-cover object-center"
+        src={speaker.image?.imageUrl || "/dummy.jpg"}
+        alt={speaker.name}
+        className="w-full h-64 object-cover"
       />
-      <h3 className="text-lg font-bold mb-2">{name}</h3>
-      <p className="text-gray-600"> {designation} </p>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-gray-800">{speaker.name}</h3>
+        <p className="text-gray-600">{speaker.designation}</p>
+      </div>
     </div>
   );
-};
-
-export default SpeakerCard;
+}

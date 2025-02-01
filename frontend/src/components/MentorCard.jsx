@@ -1,46 +1,19 @@
 /* eslint-disable react/prop-types */
 
-import { FaLink } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa6";
-import { MdAttachEmail } from "react-icons/md";
-import "./MentorCard.css";
-import { Link } from "react-router-dom";
-
-const MentorCard = ({ name, desc, img, short }) => {
+export default function MentorCard({ name, title, image }) {
   return (
-    <div className="book h-[450px] w-full max-w-80 outline my-5 max-sm:h-[400px]">
-      <div className="w-full h-full flex justify-end rounded-r-md">
-        <div className="w-[90%]  h-full rounded-lg p-5">
-          <p className="text-gray-600">{desc}</p>
-          <h3 className="text-2xl font-semibold mt-5 flex items-center gap-1 text-gray-700">
-            <FaLink className="text-gray-600" /> Connect
-          </h3>
-          <div className="flex gap-5 mt-5">
-            <Link>
-              <FaLinkedin className="text-3xl" />
-            </Link>
-            <Link>
-              <MdAttachEmail className="text-3xl" />
-            </Link>
-          </div>
-        </div>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden outline">
+      <div className="aspect-[4/3] relative">
+        <img
+          src={image || "/dummy.jpg"}
+          alt={name}
+          className="w-full h-full object-cover filter grayscale"
+        />
       </div>
-
-      <div className="cover flex flex-col h-full items-start overflow-hidden outline p-3 bg-purewhite shadow-[5px_5px_0px_0px_rgb(0,0,0)] rounded-lg">
-        <div className="h-[70%] w-full flex overflow-hidden">
-          <img
-            src={img}
-            alt=""
-            className="h-full w-full object-cover object-top rounded-md grayscale border border-black"
-          />
-        </div>
-        <h2 className="text-2xl mt-2 text-gray-600 font-medium max-sm:text-xl">
-          {name}
-        </h2>
-        <p className="text-md mt-2">{short}</p>
+      <div className="p-6">
+        <h3 className="font-semibold text-xl mb-1">{name}</h3>
+        <p className="text-base text-gray-600">{title}</p>
       </div>
     </div>
-  );
-};
-
-export default MentorCard;
+  )
+}

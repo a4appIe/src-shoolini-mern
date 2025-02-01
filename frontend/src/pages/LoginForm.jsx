@@ -50,8 +50,8 @@ const LoginForm = () => {
   });
 
   return (
-    <div className="flex items-center justify-center min-h-[92vh] bg-[#F8F9FA]">
-      <div className="card w-full max-w-max p-6 md:p-8 bg-darkRed shadow-[6px_6px_0px_0px_rgb(0,0,0)] text-center min-h-[350px] mx-2 lg:min-h-[400px] lg:min-w-[350px]">
+    <div className="flex items-center justify-center min-h-[92vh] bg-black">
+      <div className="card w-full max-w-max p-6 md:p-8 bg-darkRed text-center min-h-[350px] mx-2 lg:min-h-[400px] lg:min-w-[350px]">
         <h4 className="title text-xl md:text-2xl font-medium mb-4 text-[#f5f5f5]">
           Log In!
         </h4>
@@ -60,7 +60,7 @@ const LoginForm = () => {
             handleAuth(e);
           }}
         >
-          {/* Email Field */}
+          {/* Username Field */}
           <div className="field flex items-center gap-2 bg-white px-3 py-2 mb-6">
             <svg
               className="input-icon w-5 h-5 fill-brown"
@@ -72,7 +72,7 @@ const LoginForm = () => {
             <input
               id="username"
               placeholder="username"
-              className="input-field w-full bg-transparent border-none outline-none text-sm md:text-base text-[#d3d3d3] placeholder-gray-400"
+              className="input-field w-full bg-transparent border-none outline-none text-sm md:text-base text-darkRed placeholder-gray-400"
               name="username"
               type="text"
               value={userData.username}

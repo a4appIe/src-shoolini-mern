@@ -2,8 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-import SRC_LOGO from "/src_logo.png";
-import SHOOLINI_LOGO from "/shoolini-logo.png";
 
 const Footer = () => {
   return (
@@ -12,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
 
           {/* Copyright */}
-          <div className="text-sm text-gray-400 mb-4 md:mb-0">
+          <div className="text-sm text-gray-400 mb-4 md:mb-0 text-center">
             © {new Date().getFullYear()} <span className="text-red">Student Research Council.</span> All rights reserved.
           </div>
 

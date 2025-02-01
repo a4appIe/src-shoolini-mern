@@ -1,93 +1,47 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
-import { Check } from 'lucide-react'
-import HERO_BG from "/bg-img.jpg";
+import { PricingCard } from "../components/PricingCard"
 
-const Pricing = () => {
-      const scrollToTop = () => {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      };
-      useEffect(() => {
-        scrollToTop();
-      }, []);
-    const plans = [
-        {
-          name: 'Basic Plan 🙃',
-          price: '$9.99',
-          features: [
-            '1 User',
-            '10 Projects',
-            '5GB Storage',
-            'Basic Support',
-          ]
-        },
-        {
-          name: 'Pro Plan 😉',
-          price: '$19.99',
-          features: [
-            'Unlimited Users',
-            'Unlimited Projects',
-            '100GB Storage',
-            '24/7 Priority Support',
-            'Advanced Analytics',
-          ]
-        },
-      ]
+const pricingPlans = [
+  {
+    title: "Basic",
+    price: "₹ 1,000/sem",
+    description: "Perfect for individuals",
+    features: ["1 user", "10 projects", "5GB storage", "Basic support"],
+  },
+  {
+    title: "Pro",
+    price: "₹ 2,000/sem",
+    description: "Great for small teams",
+    features: ["5 users", "Unlimited projects", "50GB storage", "Priority support", "Advanced analytics"],
+    isPopular: true,
+  },
+  {
+    title: "Enterprise",
+    price: "₹ 3,000/sem",
+    description: "For large organizations",
+    features: [
+      "Unlimited users",
+      "Unlimited projects",
+      "1TB storage",
+      "24/7 dedicated support",
+      "Custom integrations",
+      "Advanced security",
+    ],
+  },
+]
 
+export default function PricingPage() {
   return (
-    <div className="min-h-[91vh] bg-gray-100 py-12 px-4 sm:px-6 lg:px-8"
-            style={{
-              backgroundImage: `url("${HERO_BG}")`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundAttachment: "fixed"
-            }}
-            >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold sm:text-4xl text-red border py-3 shadow-[4px_4px_0px_black]">
-            Plans and Pricing
-          </h2>
-          <p className="mt-4 text-xl text-gray-600">
-            Choose the plan that&apos;s right for you
-          </p>
-        </div>
-
-        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-2">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`rounded-lg shadow-lg divide-y divide-gray-200 bg-gray-100`}
-            >
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold text-gray-900">{plan.name}</h2>
-                <p className="mt-4 text-5xl font-extrabold text-red">{plan.price}</p>
-                <p className="mt-1 text-xl text-gray-500">per month</p>
-                <button
-                  className="mt-8 w-full bg-darkRed py-4 text-white rounded">
-                  Get Started
-                </button>
-              </div>
-              <div className="pt-6 pb-8 px-6">
-                <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">
-                  What&apos;s included
-                </h3>
-                <ul className="mt-6 space-y-4">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex space-x-3">
-                      <Check className="flex-shrink-0 h-5 w-5 text-green" aria-hidden="true" />
-                      <span className="text-base text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+    <div className="bg-gray-800 min-h-screen">
+      <div className="container mx-auto py-16 px-4">
+        <h1 className="text-4xl font-bold mb-4 text-center text-white">Choose Your Plan</h1>
+        <p className="text-xl text-gray-400 mb-12 text-center">Select the perfect plan for your needs</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {pricingPlans.map((plan, index) => (
+            <PricingCard key={index} {...plan} />
           ))}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Pricing;

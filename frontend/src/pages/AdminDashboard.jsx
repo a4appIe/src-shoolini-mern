@@ -6,8 +6,8 @@ import { IoCreateSharp } from "react-icons/io5";
 import { FaSignOutAlt } from "react-icons/fa";
 import { MdSecurityUpdateWarning } from "react-icons/md";
 import axios from "axios";
-import HERO_BG from "/bg-img.jpg";
 import { AuthContext } from "../components/AuthContext";
+import { LuLayoutList } from "react-icons/lu";
 
 const AdminDashboard = () => {
   const { isUserLoggedIn, data, logout } = useContext(AuthContext);
@@ -145,45 +145,49 @@ const AdminDashboard = () => {
       )}
       {/* // ------------------------------------------------------------- */}
       <div
-        className="min-h-[91vh] grid place-items-center"
-        style={{
-          backgroundImage: `url("${HERO_BG}")`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundAttachment: "fixed",
-        }}
+        className="min-h-[91vh] grid place-items-center bg-black"
       >
         <div className="h-fit grid place-items-center gap-5">
           <div className="flex gap-5">
             <Link to={"/add-event"}>
-              <div className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl hover:bg-darkRed hover:text-white transition duration-300">
+              <div className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] bg-darkRed text-white transition duration-300">
                 <IoCreateSharp className="text-5xl" />
-                <h1 className="text-darkRed font-semibold max-sm:text-sm">
+                <h1 className="text-white font-semibold max-sm:text-sm">
                   Create Event
                 </h1>
               </div>
             </Link>
             <div
-              className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl cursor-pointer hover:bg-darkRed hover:text-white transition duration-300"
+              className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] cursor-pointer bg-darkRed text-white transition duration-300"
               onClick={handleSignOut}
             >
               <FaSignOutAlt className="text-5xl" />
-              <h1 className="text-darkRed font-semibold max-sm:text-sm">
+              <h1 className="text-white font-semibold max-sm:text-sm">
                 Sign out
               </h1>
             </div>
           </div>
           <div className="flex gap-5">
             <div
-              className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl cursor-pointer hover:bg-darkRed hover:text-white transition duration-300"
+              className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] cursor-pointer bg-darkRed text-white transition duration-300"
               onClick={() => {
                 openModal();
               }}
             >
               <MdSecurityUpdateWarning className="text-5xl" />
-              <h1 className="text-darkRed font-semibold max-sm:text-sm text-center">
+              <h1 className="text-white font-semibold max-sm:text-sm text-center">
                 Update <br /> password
+              </h1>
+            </div>
+            <div
+              className="outline h-40 w-40 max-sm:h-28 max-sm:w-28 flex flex-col items-center justify-center p-1 shadow-[-8px_-8px_0_0_rgb(0,0,0)] cursor-pointer bg-darkRed text-white transition duration-300"
+              onClick={() => {
+                navigate("/events");
+              }}
+            >
+              <LuLayoutList className="text-5xl" />
+              <h1 className="text-white font-semibold max-sm:text-sm text-center">
+                All events
               </h1>
             </div>
           </div>
