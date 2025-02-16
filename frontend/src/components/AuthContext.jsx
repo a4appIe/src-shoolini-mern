@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { createContext, useState, useEffect } from "react";
 
 // Create the context

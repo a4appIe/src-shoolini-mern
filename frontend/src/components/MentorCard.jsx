@@ -7,7 +7,7 @@ export default function MentorCard({ name, title, image }) {
         <img
           src={image || "/dummy.jpg"}
           alt={name}
-          className="w-full h-full object-cover filter grayscale"
+          className="w-full h-full object-fit filter grayscale"
         />
       </div>
       <div className="p-6">

@@ -4,18 +4,10 @@ const { uploadImage } = require("../utils/uploadImage");
 
 const createEvent = async (req, res) => {
   try {
-    const {
-      title,
-      agenda,
-      desc,
-      venue,
-      time,
-      visibility,
-      date,
-      speakersData,
-    } = req.body;
+    const { title, agenda, desc, venue, time, visibility, date, speakersData } =
+      req.body;
 
-    const { cover_image, host_image, speakers } = req.files;
+    const { cover_image, speakers } = req.files;
     // Parse speakers metadata
     const speakersMetadata = JSON.parse(speakersData);
 
@@ -78,7 +70,6 @@ const createEvent = async (req, res) => {
       success: true,
       event,
     });
-
   } catch (error) {
     return res
       .status(500)
@@ -167,4 +158,32 @@ const updateEvent = async (req, res) => {
   }
 };
 
-module.exports = { createEvent, updateEvent, getEvents, getSingleEvent };
+const deleteSingleEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const event = await Event.findByIdAndDelete(id);
+    if (!event) {
+      return res.status(404).json({
+        message: "Event not found",
+        success: false,
+      });
+    }
+    return res.status(200).json({
+      message: "Event Deleted Successfully",
+      success: true,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Something went wrong", success: false });
+  }
+};
+
+module.exports = {
+  createEvent,
+  updateEvent,
+  getEvents,
+  getSingleEvent,
+  deleteSingleEvent,
+};

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { PricingCard } from "../components/PricingCard"
 
 const pricingPlans = [
@@ -30,6 +31,12 @@ const pricingPlans = [
 ]
 
 export default function PricingPage() {
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+    useEffect(() => {
+      scrollToTop();
+    }, []);
   return (
     <div className="bg-gray-800 min-h-screen">
       <div className="container mx-auto py-16 px-4">

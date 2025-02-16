@@ -7,13 +7,14 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../components/AuthContext";
-import EventCard from "../components/EventCard";
 import { MoveUpRight } from "lucide-react";
 import { SquarePen } from "lucide-react";
 
 const EventLandingPage = () => {
   const [adminData, setAdminData] = useState(null);
   const [event, setEvent] = useState({});
+  console.log(event.speakers);
+
   const [events, setEvents] = useState([]);
   const eventId = useParams();
 
@@ -46,17 +47,20 @@ const EventLandingPage = () => {
   const ongoingEvents = [];
   const upcomingEvents = [];
 
-  events.forEach((event) => {
-    if (event?.visibility === "past") {
-      pastEvents.push(event);
+  events.forEach((e) => {
+    if (e?.visibility === "past") {
+      pastEvents.push(e);
     } else if (event?.visibility === "upcoming") {
-      upcomingEvents.push(event);
+      if (!(event._id == e._id)) {
+        console.log(event._id, "    ", e._id);
+        upcomingEvents.push(e);
+      }
     } else {
-      ongoingEvents.push(event);
+      ongoingEvents.push(e);
     }
   });
 
-  console.log(upcomingEvents);
+  console.log("upcomiwhjd qw", upcomingEvents);
 
   const fetchEvents = async () => {
     try {
@@ -282,7 +286,9 @@ const EventLandingPage = () => {
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-lg">📅</span>
-              <span>{new Date(event?.date).toDateString()}, {event?.time}</span>
+              <span>
+                {new Date(event?.date).toDateString()}, {event?.time}
+              </span>
             </div>
           </div>
         </div>
@@ -303,30 +309,31 @@ const EventLandingPage = () => {
           <p className="text-gray-400 leading-7 mb-6">{event?.desc}</p>
         </section>
 
-        <section className="py-16 px-4 bg-gray-900">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center text-white mb-12">
-              Our Speakers
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {event.speakers &&
-                event.speakers.map((speaker) => (
+        {Array.isArray(event.speakers) && event.speakers.length > 0 && (
+          <section className="py-16 px-4 bg-gray-900">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-4xl font-bold text-center text-white mb-12">
+                Our Speakers
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {event.speakers.map((speaker) => (
                   <SpeakerCard key={speaker._id} speaker={speaker} />
                 ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Other Events Section */}
-        <section className="max-w-5xl mx-auto mt-16">
-          <h2 className="text-2xl font-bold mb-6">Upcoming events</h2>
+        {upcomingEvents.length > 0 && (
+          <section className="max-w-5xl mx-auto mt-16">
+            <h2 className="text-2xl font-bold mb-6">Upcoming events</h2>
 
-          {/* Event Cards */}
-          <div className="space-y-6">
-            {/* Event Card 1 */}
+            {/* Event Cards */}
+            <div className="space-y-6">
+              {/* Event Card 1 */}
 
-            {upcomingEvents &&
-              upcomingEvents.map(
+              {upcomingEvents.map(
                 (e) =>
                   e._id !== eventId.id && (
                     <a href={`/event/${e._id}`} key={e._id}>
@@ -356,8 +363,9 @@ const EventLandingPage = () => {
                     </a>
                   )
               )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

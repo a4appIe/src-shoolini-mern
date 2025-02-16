@@ -41,7 +41,7 @@ const data = {
       name: "Anitya Gupta",
       title: "Founder",
       image:
-        "https://media.licdn.com/dms/image/v2/C4D03AQFLnC5d-7yf6Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1625547261472?e=1740009600&v=beta&t=cs_EEgGVu9lbrK_tGLCbaR6xFQmy03xyLbDK2_hxVu8",
+        "/anitya-gupta.jpeg",
     },
     {
       name: "Prof. Atul Khosla",
@@ -78,8 +78,7 @@ const data = {
       name: "Dr. Ravi Kant",
       title: "Associate Professor",
       department: "Electrical",
-      image:
-        "https://media.licdn.com/dms/image/v2/C4E03AQESYPqHnHEqQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1639403763362?e=1740009600&v=beta&t=haD5MELKCtuUmWaNP4bXupyzo8QfRAeYrgAhpIz_79E",
+      image: null,
     },
     {
       name: "Dr. M.S. Thakur",
@@ -187,8 +186,8 @@ const data = {
       title: "Associate Professor",
     },
     {
-      name: "Dr. Karnika",
-      image: "https://shooliniuniversity.com/media/1722680154-Kanika.jpg",
+      name: "Dr. Kanika",
+      image: "https://shooliniuniversity.com/media/1695882055-Kanika.jpg",
       title: "Assistant Professor",
     },
     {
@@ -260,8 +259,8 @@ const data = {
     },
     {
       name: "Mr. Anitya Gupta",
-      // image:
-      //   "https://media.licdn.com/dms/image/v2/C4D03AQFLnC5d-7yf6Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1625547261472?e=1740009600&v=beta&t=cs_EEgGVu9lbrK_tGLCbaR6xFQmy03xyLbDK2_hxVu8",
+      image:
+        "/anitya-gupta.jpeg",
       title: "Ramanujan Research Associate",
     },
   ],

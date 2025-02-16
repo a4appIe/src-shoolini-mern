@@ -31,6 +31,30 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  const [isOpens, setIsOpens] = useState(false);
+
+  const options = [
+    {
+      option: "Board of Regents",
+      link: "board-of-regents",
+    },
+    {
+      option: "Founder Members",
+      link: "founder-members",
+    },
+    {
+      option: "R&D Board",
+      link: "rd-board",
+    },
+    {
+      option: "Financial Board",
+      link: "financial-board",
+    },
+    {
+      option: "Advising Founder Members",
+      link: "advising-founder-members",
+    },
+  ];
   return (
     <>
       <nav className="bg-darkRed shadow-md sticky top-0 px-14 flex items-center justify-between py-4 max-sm:px-5 max-md:px-8 z-10">
@@ -72,7 +96,52 @@ const Navbar = () => {
               <Link to={"/mentors"}>Mentors</Link>
             </li>
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
-              <Link to={"/leadership"}>Leadership</Link>
+              <button
+                onClick={() => setIsOpens(!isOpens)}
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  // backgroundColor: "#3498db",
+                  color: "white",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                Leadership
+              </button>
+              {isOpens && (
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    position: "absolute",
+                    width: "17%",
+                    // backgroundColor: "darkRed",
+                    border: "1px solid #ccc",
+                    boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
+                  }}
+                  className="bg-darkRed"
+                >
+                  {options.map((option, index) => (
+                    <Link key={index} to={option.link}>
+                      <li
+                        onClick={() => {
+                          setIsOpens(false);
+                        }}
+                        style={{
+                          padding: "10px",
+                          cursor: "pointer",
+                          borderBottom: "1px solid #eee",
+                        }}
+                        className="hover:bg-gray-600"
+                      >
+                        {option.option}
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              )}
             </li>
 
             <li className="text-[14px] max-md:text-sm lg:text-[15px] hover:text-gray-300 duration-500">
@@ -98,55 +167,112 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-
       </nav>
-        {/* MOBILE MENU */}
+      {/* MOBILE MENU */}
       <div
-        className={`flex flex-col bg-yellow-200 h-screen w-screen text-2xl fixed top-0 p-3 gap-8 z-10 ${
+        className={`flex flex-col bg-darkRed h-screen w-screen text-2xl fixed top-0 p-3 gap-2 z-10 margin-auto ${
           isOpen ? "block" : "hidden"
         }`}
       >
-        <p className="flex items-center justify-end">
+        <p className="flex items-center justify-end relative top-2">
           <RxCross2
-            className="border cursor-pointer"
+            className="cursor-pointer text-4xl text-red bg-gray-800 rounded-full p-2 mb-2"
             onClick={() => {
               setIsOpen((prev) => !prev);
             }}
           />
         </p>
-        <ul className="flex flex-col gap-3 px-10 justify-center">
+        <ul className="flex flex-col gap-3 px-10 justify-center max-sm:w-screen sm:w-[50vw] mx-auto">
           <Link to={"/"}>
             <li
-              className="text-center border cursor-pointer bg-white border-black hover:bg-blue-200 duration-700 shadow-[6px_6px_0px_0px_rgba(0,_0,_0)]"
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
               onClick={handleNavItemClick}
             >
               Home
             </li>
           </Link>
-          <Link to={"/about"}>
+          <Link to={"/events"}>
             <li
-              className="text-center border bg-white border-black hover:bg-blue-200 duration-700 shadow-[6px_6px_0px_0px_rgba(0,_0,_0)]"
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
               onClick={handleNavItemClick}
             >
-              About
+              Events
             </li>
           </Link>
-          <Link to={"/services"}>
+          <Link to={"/mentors"}>
             <li
-              className="text-center border bg-white border-black hover:bg-blue-200 duration-700 shadow-[6px_6px_0px_0px_rgba(0,_0,_0)]"
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
               onClick={handleNavItemClick}
             >
-              Services
+              Mentors
+            </li>
+          </Link>
+          <Link to={"/board-of-regents"}>
+            <li
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
+              onClick={handleNavItemClick}
+            >
+              Board of Regents
+            </li>
+          </Link>
+          <Link to={"/founder-members"}>
+            <li
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
+              onClick={handleNavItemClick}
+            >
+              Founder Members
+            </li>
+          </Link>
+          <Link to={"/rd-board"}>
+            <li
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
+              onClick={handleNavItemClick}
+            >
+              R&D Board
+            </li>
+          </Link>
+          <Link to={"/financial-board"}>
+            <li
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
+              onClick={handleNavItemClick}
+            >
+              Financial Board
+            </li>
+          </Link>
+          <Link to={"/advising-founder-members"}>
+            <li
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
+              onClick={handleNavItemClick}
+            >
+              Advising Founder Members
+            </li>
+          </Link>
+          <Link to={"/pricing"}>
+            <li
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
+              onClick={handleNavItemClick}
+            >
+              Pricing
             </li>
           </Link>
           <Link to={"/contact"}>
             <li
-              className="text-center border bg-white border-black hover:bg-blue-200 duration-700 shadow-[6px_6px_0px_0px_rgba(0,_0,_0)]"
+              className="text-center border cursor-pointer bg-white border-black hover:bg-gray-600 duration-700 hover:text-white text-sm py-2"
               onClick={handleNavItemClick}
             >
               Contact
             </li>
           </Link>
+          {isUserLoggedIn && (
+            <Link to={"/admin/dashboard"}>
+              <li
+                className="text-center border cursor-pointer bg-red border-black hover:bg-gray-600 duration-700 text-white text-sm py-2"
+                onClick={handleNavItemClick}
+              >
+                Dashboard
+              </li>
+            </Link>
+          )}
         </ul>
       </div>
       <Outlet />

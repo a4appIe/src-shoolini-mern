@@ -24,7 +24,12 @@ const App = () => {
           <Route path="/add-event" element={<EventForm />} />
           <Route path="/event/:id" element={<EventLandingPage />} />
           <Route path="/leadership" element={<Leadership />} />
-          <Route path="/mentors" element={<Mentors />} />
+          <Route path="/mentors" element={<Mentors section={"List of Mentors"} />} />
+          <Route path="/board-of-regents" element={<Mentors section={"Board of Regents"} />} />
+          <Route path="/founder-members" element={<Mentors section={"Founder Members"} />} />
+          <Route path="/rd-board" element={<Mentors section={"R&D Board"} />} />
+          <Route path="/financial-board" element={<Mentors section={"Financial Board"} />} />
+          <Route path="/advising-founder-members" element={<Mentors section={"Advising Founder Members"} />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/admin" element={<LoginForm />} />

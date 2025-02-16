@@ -5,7 +5,7 @@ export default function SpeakerCard({ speaker }) {
       <img
         src={speaker.image?.imageUrl || "/dummy.jpg"}
         alt={speaker.name}
-        className="w-full h-64 object-cover"
+        className="w-full h-64 object-fit"
       />
       <div className="p-6">
         <h3 className="text-xl font-semibold text-gray-800">{speaker.name}</h3>

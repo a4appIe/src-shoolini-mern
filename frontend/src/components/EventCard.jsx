@@ -2,10 +2,28 @@
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "./AuthContext";
 import { useContext } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function EventCard({ event }) {
-  const { isUserLoggedIn } = useContext(AuthContext);
-  function handleDelete() {}
+  const navigate = useNavigate();
+  const { isUserLoggedIn, data } = useContext(AuthContext);
+  async function handleDelete(id) {
+    try {
+      let res = await axios.delete(`http://localhost:5000/api/v1/event/${id}`, {
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+          },
+        });
+      if (res.data.success == true) {
+        navigate("/events");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  }
   return (
     <article className="max-w-4xl bg-white rounded-lg shadow-md overflow-hidden mb-5 outline outline-darkRed">
       <div className="flex flex-col md:flex-row max-md:flex-col-reverse">
@@ -24,7 +42,7 @@ export default function EventCard({ event }) {
               <button
                 className="text-red bg-gray-300 text-3xl p-1 rounded-md outline"
                 onClick={() => {
-                  handleDelete();
+                  handleDelete(event._id);
                 }}
               >
                 <MdDelete />
