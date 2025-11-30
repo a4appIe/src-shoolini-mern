@@ -22,7 +22,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/add-event" element={<EventForm />} />
-          <Route path="/event/:id" element={<EventLandingPage />} />
+          <Route path="/event/:slug" element={<EventLandingPage />} />
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/mentors" element={<Mentors section={"List of Mentors"} />} />
           <Route path="/board-of-regents" element={<Mentors section={"Board of Regents"} />} />

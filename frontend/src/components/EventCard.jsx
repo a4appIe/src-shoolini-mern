@@ -1,75 +1,82 @@
 /* eslint-disable react/prop-types */
-import { MdDelete } from "react-icons/md";
-import { AuthContext } from "./AuthContext";
-import { useContext } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Calendar, MapPin, Clock } from "lucide-react";
 
-export default function EventCard({ event }) {
-  const navigate = useNavigate();
-  const { isUserLoggedIn, data } = useContext(AuthContext);
-  async function handleDelete(id) {
-    try {
-      let res = await axios.delete(`http://localhost:5000/api/v1/event/${id}`, {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        });
-      if (res.data.success == true) {
-        navigate("/events");
-        toast.success(res.data.message);
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  }
+export default function EventCard({ event, status = "upcoming" }) {
+  const statusStyles = {
+    ongoing: "bg-emerald-100 text-emerald-700 border-emerald-300",
+    upcoming: "bg-blue-100 text-blue-700 border-blue-300",
+    past: "bg-slate-100 text-slate-600 border-slate-300",
+  };
+
+  const statusLabels = {
+    ongoing: "Live Now",
+    upcoming: "Upcoming",
+    past: "Completed",
+  };
+
   return (
-    <article className="max-w-4xl bg-white rounded-lg shadow-md overflow-hidden mb-5 outline outline-darkRed">
-      <div className="flex flex-col md:flex-row max-md:flex-col-reverse">
-        <div className="p-6 flex-1">
-          <div className="space-y-4">
-            {/* Title and Subtitle */}
-            <div className="space-y-2">
-              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-                {event.title}
-              </h1>
-              <p className="text-base md:text-lg text-muted-foreground">
-                {event.agenda}
-              </p>
-            </div>
-            {isUserLoggedIn ? (
-              <button
-                className="text-red bg-gray-300 text-3xl p-1 rounded-md outline"
-                onClick={() => {
-                  handleDelete(event._id);
-                }}
-              >
-                <MdDelete />
-              </button>
-            ) : (
-              <span
-                className={`inline-block px-3 py-1 text-sm font-semibold ${
-                  event.visibility == "ongoing"
-                    ? "bg-green text-white"
-                    : "bg-red text-white"
-                } rounded-full`}
-              >
-                {event.visibility}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Code Editor Preview */}
-        <div className="md:w-1/3 h-48 md:h-auto">
-          <img
-            src={event.cover_image.imageUrl}
-            alt={event.title}
-            className="w-full h-full object-cover"
-          />
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 hover:shadow-xl hover:border-emerald-500 transition-all duration-300 group h-full flex flex-col">
+      {/* Event Image */}
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={event.cover_image.imageUrl || "/dummy.jpg"}
+          alt={event.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+        />
+        {/* Status Badge */}
+        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold border ${statusStyles[status]}`}>
+          {statusLabels[status]}
         </div>
       </div>
-    </article>
+
+      {/* Event Details */}
+      <div className="p-6 flex-1 flex flex-col">
+        <h3 className="font-bold text-xl text-slate-900 mb-3 group-hover:text-emerald-600 transition line-clamp-2">
+          {event.title || "Event Title"}
+        </h3>
+
+        <p className="text-slate-600 text-sm mb-4 line-clamp-2 flex-1">
+          {event.description || "Join us for an exciting event focused on innovation and research."}
+        </p>
+
+        {/* Event Meta Information */}
+        <div className="space-y-2 mt-auto">
+          {event.date && (
+            <div className="flex items-center gap-2 text-sm text-slate-600">
+              <Calendar className="h-4 w-4 text-emerald-500" />
+              <span>{new Date(event.date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              })}</span>
+            </div>
+          )}
+
+          {event.time && (
+            <div className="flex items-center gap-2 text-sm text-slate-600">
+              <Clock className="h-4 w-4 text-emerald-500" />
+              <span>{event.time}</span>
+            </div>
+          )}
+
+          {event.location && (
+            <div className="flex items-center gap-2 text-sm text-slate-600">
+              <MapPin className="h-4 w-4 text-emerald-500" />
+              <span className="line-clamp-1">{event.location}</span>
+            </div>
+          )}
+        </div>
+
+        {/* View Details Button */}
+        <div className="mt-4 pt-4 border-t border-slate-200">
+          <span className="text-emerald-600 font-semibold text-sm group-hover:text-emerald-700 inline-flex items-center">
+            View Details
+            <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,29 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import SpeakerCard from "../components/SpeakerCard";
 import HERO_BG from "/bg-img.jpg";
-import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../components/AuthContext";
-import { MoveUpRight } from "lucide-react";
-import { SquarePen } from "lucide-react";
+import { MapPin, Calendar, Clock, Edit3, X, ArrowRight, Users } from "lucide-react";
+import dummyEvents from "../utils/dummyEvents";
 
 const EventLandingPage = () => {
-  const [adminData, setAdminData] = useState(null);
-  const [event, setEvent] = useState({});
-  console.log(event.speakers);
-
-  const [events, setEvents] = useState([]);
-  const eventId = useParams();
-
+  const [event, setEvent] = useState(null);
+  const [events, setEvents] = useState(dummyEvents);
+  const { slug } = useParams();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const { isUserLoggedIn, data, logout } = useContext(AuthContext);
-
-  // const admin = adminData?._id == id ? true : false;
-
+  const { isUserLoggedIn } = useContext(AuthContext);
   const [visibility, setVisibility] = useState("");
 
   const openModal = () => {
@@ -37,336 +28,279 @@ const EventLandingPage = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
+
   useEffect(() => {
     scrollToTop();
-  }, []);
+  }, [slug]);
 
-  // ! FETCHING EVENTS //
-
-  const pastEvents = [];
-  const ongoingEvents = [];
-  const upcomingEvents = [];
-
-  events.forEach((e) => {
-    if (e?.visibility === "past") {
-      pastEvents.push(e);
-    } else if (event?.visibility === "upcoming") {
-      if (!(event._id == e._id)) {
-        console.log(event._id, "    ", e._id);
-        upcomingEvents.push(e);
-      }
+  // Find event by slug
+  useEffect(() => {
+    const foundEvent = dummyEvents.find((e) => e.slug === slug);
+    console.log("EVENT: ", foundEvent);
+    
+    if (foundEvent) {
+      setEvent(foundEvent);
+      setVisibility(foundEvent.visibility);
     } else {
-      ongoingEvents.push(e);
+      // Redirect to 404 if event not found
+      navigate('/404', { replace: true });
     }
-  });
+  }, [slug, navigate]);
 
-  console.log("upcomiwhjd qw", upcomingEvents);
+  // Filter events for suggestions
+  const upcomingEvents = events.filter(
+    (e) => e.visibility === "upcoming" && e.slug !== slug
+  );
 
-  const fetchEvents = async () => {
-    try {
-      let res = await axios.get(`http://localhost:5000/api/v1/event`);
-      setEvents(res.data.events);
-    } catch (error) {
-      console.error("Error updating visibility: ", error);
-    }
+  const ongoingEvents = events.filter(
+    (e) => e.visibility === "ongoing" && e.slug !== slug
+  );
+
+  const updateVisibility = () => {
+    // Update visibility in local state (since using dummy data)
+    const updatedEvents = events.map((e) =>
+      e.slug === slug ? { ...e, visibility } : e
+    );
+    setEvents(updatedEvents);
+    setEvent({ ...event, visibility });
+    toast.success("Visibility updated successfully!");
   };
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  const fetchAdminData = async () => {
-    try {
-      let res = await axios.get("http://localhost:5000/api/v1/admin");
-      res.data ? setAdminData(res?.data?.admin[0]) : null;
-      console.log(adminData);
-    } catch (error) {
-      // console.error("Error fetching data: ", error);
-    }
-  };
-
-  const fetchEventData = async () => {
-    try {
-      let res = await axios.get(
-        `http://localhost:5000/api/v1/event/${eventId.id}`
-      );
-      setEvent(res.data.event);
-      setVisibility(res.data.event.visibility);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
-
-  console.log(event);
-
-  const updateVisibility = async () => {
-    try {
-      let res = await axios.patch(
-        `http://localhost:5000/api/v1/event/update/${eventId.id}`,
-        { visibility },
-        {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        }
-      );
-      toast.success(res.data.message);
-    } catch (error) {
-      // console.error("Error updating visibility: ", error);
-      // toast.error(error.response.data.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchEventData();
-    fetchAdminData();
-  }, []);
+  // Show loading state while event is being found
+  if (!event) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-emerald-500 mx-auto mb-4"></div>
+          <p className="text-slate-600 text-lg">Loading event...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div
-      style={{
-        backgroundImage: `url("${HERO_BG}")`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Modal ------------------------------------ */}
+    <div className="min-h-screen bg-slate-50">
+      {/* Edit Visibility Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 p-3">
-          <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+        <div className="fixed inset-0 bg-slate-900 bg-opacity-75 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
             {/* Modal Header */}
-            <div className="flex justify-between items-center border-b pb-2">
-              <h3 className="text-xl font-semibold">Update visibility?</h3>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-slate-900">Update Visibility</h3>
               <button
                 onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                className="text-slate-400 hover:text-slate-600 focus:outline-none transition"
               >
-                ✕
+                <X className="h-6 w-6" />
               </button>
             </div>
 
             {/* Modal Body */}
-            <div className="mt-4">
+            <div className="mb-6">
               <label
                 htmlFor="category"
-                className="block text-gray-700 font-medium"
+                className="block text-slate-700 font-semibold mb-3"
               >
-                Visibility
+                Event Status
               </label>
               <select
                 id="category"
                 name="category"
-                className="w-full mt-2 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                className="w-full p-4 border-2 border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
                 onChange={(e) => setVisibility(e.target.value)}
                 value={visibility}
               >
                 <option value="">Select visibility</option>
-                <option value="ongoing">ongoing</option>
-                <option value="upcoming">upcoming</option>
-                <option value="past">past</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="past">Past</option>
               </select>
             </div>
 
             {/* Modal Footer */}
-            <div className="mt-6 flex justify-end">
+            <div className="flex gap-3">
               <button
                 onClick={closeModal}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md shadow hover:bg-gray-400"
+                className="flex-1 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition"
               >
                 Cancel
               </button>
-              <div onClick={updateVisibility}>
-                <button
-                  onClick={() => {
-                    closeModal();
-                  }}
-                  className="ml-3 px-4 py-2 bg-darkRed text-white rounded-md shadow"
-                >
-                  Save
-                </button>
-              </div>
+              <button
+                onClick={() => {
+                  updateVisibility();
+                  closeModal();
+                }}
+                className="flex-1 px-6 py-3 bg-emerald-500 text-white rounded-xl font-semibold hover:bg-emerald-600 transition"
+              >
+                Save Changes
+              </button>
             </div>
           </div>
         </div>
       )}
-      {/* // ------------------------------------------------------------- */}
-      {/* <div className="backdrop-blur-sm">
-        {isUserLoggedIn && (
-          <p
-            className="text-white px-7 py-3 w-fit mx-auto rounded-full bg-darkRed text-lg cursor-pointer relative top-10 font-md max-sm:text-xl"
-            onClick={openModal}
-          >
-            Edit visibility?
-          </p>
-        )}
-        <div className="w-[90%] lg:w-[80%] mx-auto pt-20"> */}
+
       {/* Hero Section */}
-      {/* <div className="flex flex-col md:flex-row md:justify-between mb-10">
-            <div className="flex flex-col">
-              <h2 className="text-4xl md:text-5xl font-medium mb-4">
-                {event?.title}
-              </h2>
-              <p className="text-lg md:text-xl font-medium text-gray-700">
-                {event?.agenda}
-              </p>
-            </div>
-            <div className="flex flex-col mt-5 md:mt-0 text-right">
-              <p className="text-lg md:text-xl font-semibold mb-5">
-                {new Date(event?.date).toDateString()}
-              </p>
-              <p className="text-sm md:text-md text-gray-600">{event?.venue}</p>
-            </div>
-          </div> */}
-
-      {/* Event Image */}
-      {/* <div className="w-full overflow-hidden mb-20 outline outline-white shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl">
-            <img
-              src={event?.cover_image?.imageUrl}
-              alt="Event"
-              className="w-full h-auto object-cover object-center"
-            />
-          </div> */}
-
-      {/* About the Event */}
-      {/* <div className="flex flex-col lg:flex-row gap-8 mb-16 outline outline-white p-6 bg-slate-500/[.3] shadow-[-8px_-8px_0_0_rgb(0,0,0)] rounded-br-3xl">
-            <div className="lg:w-[60%]">
-              <h3 className="text-2xl md:text-4xl font-medium">
-                About the Event
-              </h3>
-              <p className="text-md md:text-lg mt-3 text-gray-700">
-                {event.desc}
-              </p>
-            </div>
-            <div className="lg:w-[40%] h-72 md:h-96 overflow-hidden outline outline-white rounded-br-xl border border-10">
-              <img
-                src={event?.about_image?.imageUrl}
-                alt="Event Speaker"
-                className="h-full w-full object-cover object-center rounded-br-xl"
-              />
-            </div>
-          </div> */}
-
-      {/* Speakers Section */}
-      {/* <div className="text-center pb-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-10">
-              Meet the Speakers 🎤
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
-              {event?.speakers?.map((speaker) => (
-                <SpeakerCard
-                  key={speaker.name}
-                  name={speaker?.name}
-                  designation={speaker?.designation}
-                  image={speaker?.image?.imageUrl}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div> */}
-      <section className="bg-darkRed text-white py-20 px-6 flex items-center justify-center">
-        <div className="text-center max-w-3xl">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            {event?.title}
-          </h2>
+      <section
+        className="relative py-24 px-6"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(30, 41, 59, 0.92), rgba(51, 65, 85, 0.88)), url("${HERO_BG}")`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Edit Button for Admin */}
           {isUserLoggedIn && (
-            <p
-              className="text-white px-7 py-3 w-fit mx-auto rounded-full bg-blue-500 text-lg cursor-pointer font-md max-sm:text-xl flex flex-row gap-2 items-center justify-center"
+            <button
               onClick={openModal}
+              className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-full font-semibold mb-8 transition shadow-lg"
             >
-              <SquarePen /> <span>Edit visibility</span>
-            </p>
+              <Edit3 className="h-4 w-4" />
+              Edit Visibility
+            </button>
           )}
-          <div className="flex flex-col md:flex-row items-center justify-center mt-4 space-y-4 md:space-y-0 md:space-x-12 text-sm md:text-base">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg">📍</span>
-              <span>{event.venue}</span>
+
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+            {event.title}
+          </h1>
+
+          {/* Event Details */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-white">
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+              <MapPin className="h-5 w-5 text-emerald-400" />
+              <span className="font-medium">{event.venue}</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-lg">📅</span>
-              <span>
-                {new Date(event?.date).toDateString()}, {event?.time}
-              </span>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+              <Calendar className="h-5 w-5 text-emerald-400" />
+              <span className="font-medium">{new Date(event.date).toDateString()}</span>
             </div>
+            {event.time && (
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                <Clock className="h-5 w-5 text-emerald-400" />
+                <span className="font-medium">{event.time}</span>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      <div className="bg-black text-white px-6 md:px-16 lg:px-32 py-12">
-        {/* About Section */}
-        <section className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mb-6">About</h1>
-          {/* Image */}
-          <div className="my-8">
-            <img
-              src={event?.cover_image?.imageUrl}
-              alt="About Image"
-              className="rounded-lg w-full"
-            />
-          </div>
-          <p className="text-gray-400 leading-7 mb-6">{event?.desc}</p>
-        </section>
+      {/* About Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold text-slate-900 mb-8">About This Event</h2>
 
-        {Array.isArray(event.speakers) && event.speakers.length > 0 && (
-          <section className="py-16 px-4 bg-gray-900">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-4xl font-bold text-center text-white mb-12">
-                Our Speakers
+          {/* Event Cover Image */}
+          {event.cover_image?.imageUrl && (
+            <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={event.cover_image.imageUrl}
+                alt="Event Cover"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
+
+          <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-line">
+            {event.desc}
+          </p>
+        </div>
+      </section>
+
+      {/* Speakers Section */}
+      {Array.isArray(event.speakers) && event.speakers.length > 0 && (
+        <section className="py-20 px-6 bg-slate-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                Meet Our Speakers
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {event.speakers.map((speaker) => (
-                  <SpeakerCard key={speaker._id} speaker={speaker} />
-                ))}
+              <div className="flex items-center justify-center gap-2">
+                <Users className="h-5 w-5 text-emerald-600" />
+                <span className="text-slate-600 font-semibold">
+                  {event.speakers.length} Expert{event.speakers.length > 1 ? 's' : ''}
+                </span>
               </div>
             </div>
-          </section>
-        )}
 
-        {/* Other Events Section */}
-        {upcomingEvents.length > 0 && (
-          <section className="max-w-5xl mx-auto mt-16">
-            <h2 className="text-2xl font-bold mb-6">Upcoming events</h2>
-
-            {/* Event Cards */}
-            <div className="space-y-6">
-              {/* Event Card 1 */}
-
-              {upcomingEvents.map(
-                (e) =>
-                  e._id !== eventId.id && (
-                    <a href={`/event/${e._id}`} key={e._id}>
-                      <div className="bg-red p-6 rounded-lg flex items-center justify-between mb-5">
-                        <div>
-                          <p className="text-3xl font-bold">
-                            {new Date(e.date).getDate()}
-                          </p>
-                          <p className="uppercase text-sm font-medium">
-                            {new Date(e.date).toLocaleString("default", {
-                              month: "long",
-                            })}
-                          </p>
-                        </div>
-                        <div className="flex-1 px-4">
-                          <h3 className="text-lg font-semibold max-md:texk-md">
-                            {e.title}
-                          </h3>
-                          <p className="text-sm text-gray-300 max-md:texk-xs">
-                            {e.agenda}
-                          </p>
-                        </div>
-                        <div className="h-8 w-8 bg-pink rounded-full texk-black max-md:hidden">
-                          <MoveUpRight />
-                        </div>
-                      </div>
-                    </a>
-                  )
-              )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {event.speakers.map((speaker, index) => (
+                <div
+                  key={speaker._id || index}
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <SpeakerCard speaker={speaker} />
+                </div>
+              ))}
             </div>
-          </section>
-        )}
-      </div>
+          </div>
+        </section>
+      )}
+
+      {/* Upcoming Events Section */}
+      {upcomingEvents.length > 0 && (
+        <section className="py-20 px-6 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl font-bold text-slate-900 mb-8">
+              Other Upcoming Events
+            </h2>
+
+            <div className="space-y-4">
+              {upcomingEvents.slice(0, 3).map((e) => (
+                <Link
+                  to={`/event/${e.slug}`}
+                  key={e.slug}
+                  className="block group"
+                >
+                  <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 p-6 rounded-2xl flex items-center justify-between transition-all duration-300 shadow-lg hover:shadow-xl">
+                    {/* Date Badge */}
+                    <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 text-center min-w-[80px]">
+                      <p className="text-3xl font-bold text-white">
+                        {new Date(e.date).getDate()}
+                      </p>
+                      <p className="uppercase text-sm font-semibold text-white/90">
+                        {new Date(e.date).toLocaleString("default", {
+                          month: "short",
+                        })}
+                      </p>
+                    </div>
+
+                    {/* Event Details */}
+                    <div className="flex-1 px-6">
+                      <h3 className="text-xl font-bold text-white mb-1 group-hover:underline">
+                        {e.title}
+                      </h3>
+                      <p className="text-sm text-white/80">
+                        {e.agenda}
+                      </p>
+                    </div>
+
+                    {/* Arrow Icon */}
+                    <div className="hidden md:flex items-center justify-center w-12 h-12 bg-white/20 rounded-full group-hover:bg-white/30 transition">
+                      <ArrowRight className="h-6 w-6 text-white group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* View All Events Link */}
+            {upcomingEvents.length > 3 && (
+              <div className="text-center mt-8">
+                <Link
+                  to="/events"
+                  className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold transition"
+                >
+                  View All Events
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </div>
   );
 };

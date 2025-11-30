@@ -5,18 +5,24 @@ const data = {
       title: "Chancellor",
       image:
         "https://shooliniuniversity.com/media/1610877842-Prof%20PK%20Khosla.jpeg",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Prof. Atul Khosla",
       title: "Vice Chancellor",
       image:
         "https://shooliniuniversity.com/media/1620882386-Untitled%20design%20(14).png",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Prof. Ashish Khosla",
       title: "Innovation Director",
       image:
         "https://shooliniuniversity.com/media/1623244771-Ashish%20Khosla.jpeg",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Dr. Saroj Khosla",
@@ -34,6 +40,8 @@ const data = {
       title: "Pro Chancellor",
       image:
         "https://shooliniuniversity.com/media/1611056479-vishal%20sir%20-%20Copy.jpg",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
   ],
   "Founder Members": [
@@ -42,28 +50,38 @@ const data = {
       title: "Founder",
       image:
         "/anitya-gupta.jpeg",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Prof. Atul Khosla",
       title: "Co-Founder",
       image: "https://shooliniuniversity.com/media/1610951970-atul_khosla.jpg",
+       email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Dr. Pankaj Vaidya",
       title: "Managing Director",
       image:
         "https://shooliniuniversity.com/media/1710392196-Pankaj_Vaidya.png",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Mr. Deepak Kumar",
       title: "R&D Director",
       image:
         "https://shooliniuniversity.com/media/1610705235-Dr%20Deepak%20Kumar%20(2).JPG",
+         email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
     {
       name: "Ms. Sonia",
       title: "Dy. Financial Controller",
       image: "https://shooliniuniversity.com/media/1624518889-sonia.jpeg",
+       email: "pk.khosla@university.edu",
+      linkedin: "https://linkedin.com/in/pkkhosla"
     },
   ],
   "R&D Board": [
