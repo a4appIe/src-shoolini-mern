@@ -74,8 +74,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/founder-members" className="text-sm hover:text-emerald-400 transition">
-                  Founder Members
+                <Link to="/founders" className="text-sm hover:text-emerald-400 transition">
+                  Founders
                 </Link>
               </li>
               <li>
@@ -86,11 +86,6 @@ const Footer = () => {
               <li>
                 <Link to="/financial-board" className="text-sm hover:text-emerald-400 transition">
                   Financial Board
-                </Link>
-              </li>
-              <li>
-                <Link to="/advising-founder-members" className="text-sm hover:text-emerald-400 transition">
-                  Advising Founder Members
                 </Link>
               </li>
             </ul>
