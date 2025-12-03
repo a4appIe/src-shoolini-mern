@@ -84,7 +84,7 @@ const Events = () => {
               No Events Available
             </h2>
             <p className="text-lg text-slate-600 mb-8">
-              We don't have any events scheduled at the moment. Check back soon
+              We don&apos;t have any events scheduled at the moment. Check back soon
               for exciting research workshops, seminars, and networking
               opportunities!
             </p>
@@ -189,7 +189,7 @@ const Events = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedUpcomingEvents.map((e) => (
               <Link to={`/event/${e.slug}`} key={e._id}>
-                <EventCard event={e} status="ongoing" />
+                <EventCard event={e} status="upcoming" />
               </Link>
             ))}
           </div>
@@ -232,7 +232,7 @@ const Events = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedPastEvents.map((e) => (
               <Link to={`/event/${e.slug}`} key={e._id}>
-                <EventCard event={e} status="ongoing" />
+                <EventCard event={e} status="past" />
               </Link>
             ))}
           </div>

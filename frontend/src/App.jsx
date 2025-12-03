@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Pricing from "./pages/Pricing";
 import Footer from "./components/Footer";
 import Mentors from "./pages/Mentors";
+import Founders from "./pages/Founders";
 
 const App = () => {
   return (
@@ -24,12 +25,20 @@ const App = () => {
           <Route path="/add-event" element={<EventForm />} />
           <Route path="/event/:slug" element={<EventLandingPage />} />
           <Route path="/leadership" element={<Leadership />} />
-          <Route path="/mentors" element={<Mentors section={"List of Mentors"} />} />
-          <Route path="/board-of-regents" element={<Mentors section={"Board of Regents"} />} />
-          <Route path="/founder-members" element={<Mentors section={"Founder Members"} />} />
+          <Route
+            path="/mentors"
+            element={<Mentors section={"List of Mentors"} />}
+          />
+          <Route
+            path="/board-of-regents"
+            element={<Mentors section={"Board of Regents"} />}
+          />
+          <Route path="/founders" element={<Founders />} />
           <Route path="/rd-board" element={<Mentors section={"R&D Board"} />} />
-          <Route path="/financial-board" element={<Mentors section={"Financial Board"} />} />
-          <Route path="/advising-founder-members" element={<Mentors section={"Advising Founder Members"} />} />
+          <Route
+            path="/financial-board"
+            element={<Mentors section={"Financial Board"} />}
+          />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/admin" element={<LoginForm />} />
@@ -37,7 +46,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-      <Footer/>
+      <Footer />
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );

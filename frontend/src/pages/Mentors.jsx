@@ -101,7 +101,7 @@ export default function Mentors({ section }) {
                 No Members Found
               </h2>
               <p className="text-lg text-slate-600 mb-8">
-                We're currently updating this section. Check back soon to meet our amazing team!
+                We&apos;re currently updating this section. Check back soon to meet our amazing team!
               </p>
               <Link
                 to="/"
@@ -156,7 +156,7 @@ export default function Mentors({ section }) {
                 Want to Join Our Team?
               </h3>
               <p className="text-emerald-50 text-lg mb-8 max-w-2xl mx-auto">
-                We're always looking for talented individuals to join our mission of driving innovation and excellence
+                We&apos;re always looking for talented individuals to join our mission of driving innovation and excellence
               </p>
               <Link
                 to="/contact"

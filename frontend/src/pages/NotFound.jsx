@@ -36,7 +36,7 @@ const NotFound = () => {
             Page Not Found
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Oops! The page you're looking for seems to have wandered off. It might have been moved, deleted, or never existed.
+            Oops! The page you&apos;re looking for seems to have wandered off. It might have been moved, deleted, or never existed.
           </p>
         </div>
 

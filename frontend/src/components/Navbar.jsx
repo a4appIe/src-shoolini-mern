@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Outlet, Link } from "react-router-dom";
@@ -52,10 +53,9 @@ const Navbar = () => {
 
   const leadershipOptions = [
     { option: "Board of Regents", link: "board-of-regents" },
-    { option: "Founder Members", link: "founder-members" },
+    { option: "Founders", link: "founders" },
     { option: "R&D Board", link: "rd-board" },
     { option: "Financial Board", link: "financial-board" },
-    { option: "Advising Founder Members", link: "advising-founder-members" },
   ];
 
   return (
@@ -86,7 +86,7 @@ const Navbar = () => {
               <NavLink to="/" text="Home" />
               <NavLink to="/events" text="Events" />
               <NavLink to="/mentors" text="Mentors" />
-              
+
               {/* Leadership Dropdown */}
               <div className="relative" ref={dropdownRef}>
                 <button
@@ -94,9 +94,13 @@ const Navbar = () => {
                   className="flex items-center gap-1 text-gray-300 hover:text-emerald-400 font-medium transition"
                 >
                   Leadership
-                  <IoChevronDown className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  <IoChevronDown
+                    className={`transition-transform ${
+                      isDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                
+
                 {isDropdownOpen && (
                   <div className="absolute top-full right-0 mt-2 w-56 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2">
                     {leadershipOptions.map((option, index) => (
@@ -149,7 +153,7 @@ const Navbar = () => {
       {/* MOBILE MENU */}
       <div
         className={`fixed inset-0 bg-slate-900 z-50 transform transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? "translate-x-0" : "translate-x-full"
         } lg:hidden`}
       >
         <div className="flex flex-col h-full">
@@ -170,9 +174,17 @@ const Navbar = () => {
           <div className="flex-1 overflow-y-auto p-6">
             <div className="space-y-2">
               <MobileNavLink to="/" text="Home" onClick={handleNavItemClick} />
-              <MobileNavLink to="/events" text="Events" onClick={handleNavItemClick} />
-              <MobileNavLink to="/mentors" text="Mentors" onClick={handleNavItemClick} />
-              
+              <MobileNavLink
+                to="/events"
+                text="Events"
+                onClick={handleNavItemClick}
+              />
+              <MobileNavLink
+                to="/mentors"
+                text="Mentors"
+                onClick={handleNavItemClick}
+              />
+
               {/* Mobile Leadership Dropdown */}
               <div>
                 <button
@@ -180,9 +192,13 @@ const Navbar = () => {
                   className="w-full flex items-center justify-between px-4 py-3 rounded-lg font-medium text-gray-300 hover:bg-slate-800 hover:text-emerald-400 transition"
                 >
                   <span>Leadership</span>
-                  <IoChevronDown className={`transition-transform ${isMobileDropdownOpen ? 'rotate-180' : ''}`} />
+                  <IoChevronDown
+                    className={`transition-transform ${
+                      isMobileDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                
+
                 {isMobileDropdownOpen && (
                   <div className="mt-2 space-y-1 pl-4">
                     {leadershipOptions.map((option, index) => (
@@ -200,11 +216,24 @@ const Navbar = () => {
                 )}
               </div>
 
-              <MobileNavLink to="/pricing" text="Pricing" onClick={handleNavItemClick} />
-              <MobileNavLink to="/contact" text="Contact" onClick={handleNavItemClick} />
-              
+              <MobileNavLink
+                to="/pricing"
+                text="Pricing"
+                onClick={handleNavItemClick}
+              />
+              <MobileNavLink
+                to="/contact"
+                text="Contact"
+                onClick={handleNavItemClick}
+              />
+
               {isUserLoggedIn && (
-                <MobileNavLink to="/admin/dashboard" text="Dashboard" onClick={handleNavItemClick} highlight />
+                <MobileNavLink
+                  to="/admin/dashboard"
+                  text="Dashboard"
+                  onClick={handleNavItemClick}
+                  highlight
+                />
               )}
             </div>
           </div>
@@ -233,8 +262,8 @@ const MobileNavLink = ({ to, text, onClick, highlight = false }) => (
       onClick={onClick}
       className={`px-4 py-3 rounded-lg font-medium transition ${
         highlight
-          ? 'bg-emerald-500 text-white hover:bg-emerald-600'
-          : 'text-gray-300 hover:bg-slate-800 hover:text-emerald-400'
+          ? "bg-emerald-500 text-white hover:bg-emerald-600"
+          : "text-gray-300 hover:bg-slate-800 hover:text-emerald-400"
       }`}
     >
       {text}

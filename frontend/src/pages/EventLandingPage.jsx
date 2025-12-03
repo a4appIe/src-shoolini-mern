@@ -5,8 +5,18 @@ import HERO_BG from "/bg-img.jpg";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../components/AuthContext";
-import { MapPin, Calendar, Clock, Edit3, X, ArrowRight, Users } from "lucide-react";
+import { MapPin, Calendar, Clock, Edit3, X, ArrowRight, Users, Image as ImageIcon } from "lucide-react";
 import dummyEvents from "../utils/dummyEvents";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper modules
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 const EventLandingPage = () => {
   const [event, setEvent] = useState(null);
@@ -188,52 +198,80 @@ const EventLandingPage = () => {
 
       {/* About Section */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-slate-900 mb-8">About This Event</h2>
 
           {/* Event Cover Image */}
           {event.cover_image?.imageUrl && (
-            <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
+            <div className="mb-8 rounded-2xl overflow-hidden shadow-xl h-[600px] border-4 border-emerald-400">
               <img
                 src={event.cover_image.imageUrl}
                 alt="Event Cover"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           )}
 
-          <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-line">
+          <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-line mb-8">
             {event.desc}
           </p>
         </div>
       </section>
 
-      {/* Speakers Section */}
-      {Array.isArray(event.speakers) && event.speakers.length > 0 && (
-        <section className="py-20 px-6 bg-slate-50">
+      {/* Event Gallery Section - Image Slider */}
+      {Array.isArray(event.images) && event.images.length > 0 && (
+        <section className="py-10 px-6 bg-slate-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-slate-900 mb-4">
-                Meet Our Speakers
+                Event Gallery
               </h2>
               <div className="flex items-center justify-center gap-2">
-                <Users className="h-5 w-5 text-emerald-600" />
+                <ImageIcon className="h-5 w-5 text-emerald-600" />
                 <span className="text-slate-600 font-semibold">
-                  {event.speakers.length} Expert{event.speakers.length > 1 ? 's' : ''}
+                  {event.images.length} Photo{event.images.length > 1 ? 's' : ''}
                 </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {event.speakers.map((speaker, index) => (
-                <div
-                  key={speaker._id || index}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <SpeakerCard speaker={speaker} />
-                </div>
-              ))}
+            {/* Swiper Slider */}
+            <div className="event-gallery-slider">
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                loop={true}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                  },
+                }}
+                className="rounded-2xl"
+              >
+                {event.images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <img
+                        src={image}
+                        alt={`${event.title} - Gallery ${index + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
         </section>
@@ -241,7 +279,7 @@ const EventLandingPage = () => {
 
       {/* Upcoming Events Section */}
       {upcomingEvents.length > 0 && (
-        <section className="py-20 px-6 bg-white">
+        <section className="py-20 px-6 bg-slate-50">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-bold text-slate-900 mb-8">
               Other Upcoming Events
@@ -272,9 +310,6 @@ const EventLandingPage = () => {
                       <h3 className="text-xl font-bold text-white mb-1 group-hover:underline">
                         {e.title}
                       </h3>
-                      <p className="text-sm text-white/80">
-                        {e.agenda}
-                      </p>
                     </div>
 
                     {/* Arrow Icon */}

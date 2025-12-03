@@ -16,20 +16,17 @@ const Footer = () => {
             <img src={SRC_LOGO} alt="SRC Logo" className="h-16 w-auto mb-4" />
             <h3 className="text-white font-bold text-lg">Student Research Council</h3>
             <p className="text-sm leading-relaxed">
-              Empowering students through cutting-edge research, innovation, and entrepreneurship at India's leading research university.
+              Empowering students through cutting-edge research, innovation, and entrepreneurship at India&apos;s leading research university.
             </p>
             {/* Social Links */}
             <div className="flex space-x-4 pt-4">
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition">
-                <Facebook className="h-5 w-5" />
+              <a href="mailto:srcgoi@shooliniuniversity.com" className="text-gray-400 hover:text-emerald-400 transition">
+                <Mail className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition">
+              <a href="https://www.instagram.com/src.shoolini?igsh=MTRkeTMybzd2MG42OA==" className="text-gray-400 hover:text-emerald-400 transition">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition">
+              <a href="https://www.linkedin.com/company/studentresearchcouncil/" className="text-gray-400 hover:text-emerald-400 transition">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -114,13 +111,13 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-emerald-400 flex-shrink-0" />
                 <a href="tel:+911792308000" className="text-sm hover:text-emerald-400 transition">
-                  +91 1792 308000
+                  +91 8288099665
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-emerald-400 flex-shrink-0" />
                 <a href="mailto:src@shooliniuniversity.com" className="text-sm hover:text-emerald-400 transition">
-                  src@shooliniuniversity.com
+                  srcgoi@shooliniuniversity.com
                 </a>
               </li>
             </ul>
@@ -134,17 +131,6 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-gray-400 text-center md:text-left">
               © {new Date().getFullYear()} <span className="text-emerald-400 font-semibold">Student Research Council</span>. All rights reserved.
-            </div>
-            <div className="flex flex-wrap items-center gap-6 text-sm">
-              <Link to="/privacy-policy" className="text-gray-400 hover:text-emerald-400 transition">
-                Privacy Policy
-              </Link>
-              <Link to="/terms-conditions" className="text-gray-400 hover:text-emerald-400 transition">
-                Terms & Conditions
-              </Link>
-              <Link to="/sitemap" className="text-gray-400 hover:text-emerald-400 transition">
-                Sitemap
-              </Link>
             </div>
           </div>
         </div>

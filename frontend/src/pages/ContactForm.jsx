@@ -73,8 +73,8 @@ const ContactForm = () => {
           </h1>
 
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Have questions? We'd love to hear from you. Send us a message and
-            we'll respond as soon as possible.
+            Have questions? We&apos;d love to hear from you. Send us a message and
+            we&apos;ll respond as soon as possible.
           </p>
         </div>
 
@@ -99,7 +99,7 @@ const ContactForm = () => {
                       href="mailto:src@shooliniuniversity.com"
                       className="text-slate-600 hover:text-emerald-600 transition"
                     >
-                      src@shooliniuniversity.com
+                      srcgoi@shooliniuniversity.com
                     </a>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ const ContactForm = () => {
                       href="tel:+911792308000"
                       className="text-slate-600 hover:text-emerald-600 transition"
                     >
-                      +91 1792 308000
+                      +91 8288099665
                     </a>
                   </div>
                 </div>
@@ -276,7 +276,7 @@ const ContactForm = () => {
                     Message Sent Successfully!
                   </h3>
                   <p className="text-lg text-slate-600">
-                    Thank you for contacting us. We'll get back to you shortly.
+                    Thank you for contacting us. We&apos;ll get back to you shortly.
                   </p>
                 </div>
               )}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { PricingCard } from "../components/PricingCard";
 import { Sparkles, Zap, Crown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const pricingPlans = [
   {
@@ -160,8 +161,19 @@ export default function PricingPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-900">Money-Back Guarantee</p>
-                  <p className="text-sm text-slate-600">30-day satisfaction guarantee</p>
+                  <p className="font-semibold text-slate-900">Global Mentor Access</p>
+                  <p className="text-sm text-slate-600">Access to connect with mentors</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center mt-0.5">
+                  <svg className="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-900">Patent Support</p>
+                  <p className="text-sm text-slate-600">50% funding for global patents</p>
                 </div>
               </div>
             </div>
@@ -173,15 +185,15 @@ export default function PricingPage() {
           <p className="text-slate-600 mb-4">
             Have questions about our plans?
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold transition"
           >
             Contact our team
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
-import { FaFolderOpen, FaFileAlt, FaUpload, FaBook, FaArrowRight } from "react-icons/fa";
+import { FaFolderOpen, FaFileAlt, FaBook, FaArrowRight } from "react-icons/fa";
 import { HiLightBulb, HiBeaker, HiRocketLaunch } from "react-icons/hi2";
 import HERO_BG from "/bg-img.jpg";
-import HomeLink from "../components/HomeLink";
 import Partners from "../components/Partners";
 import { Link } from "react-router-dom";
 
@@ -41,7 +41,7 @@ const Home = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Empowering students through cutting-edge research, innovation, and entrepreneurship at India's leading research university
+            Empowering students through cutting-edge research, innovation, and entrepreneurship at India&apos;s leading research university
           </p>
 
           {/* CTA Buttons */}
@@ -61,11 +61,10 @@ const Home = () => {
           </div>
 
           {/* Statistics Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
-            <StatCard icon={FaFolderOpen} count="2" label="Patents" />
-            <StatCard icon={FaFileAlt} count="2" label="Published Papers" />
-            <StatCard icon={FaUpload} count="6" label="Research Uploads" />
-            <StatCard icon={FaBook} count="5" label="Books Published" />
+          <div className="flex flex-col sm:flex-row gap-6 mt-16 max-w-4xl mx-auto">
+            <StatCard icon={FaFolderOpen} count="7" label="Patents" />
+            <StatCard icon={FaFileAlt} count="14" label="Published Papers" />
+            <StatCard icon={FaBook} count="6" label="Book Chapters Published" />
           </div>
         </div>
       </div>
@@ -129,11 +128,11 @@ const Home = () => {
               <div className="w-20 h-1 bg-emerald-500"></div>
 
               <p className="text-lg text-slate-700 leading-relaxed">
-                Shoolini University stands at the forefront of international research, attracting outstanding academics, research staff, and students from around the globe. Our researchers engage in cutting-edge work across multiple disciplines, making groundbreaking contributions in science, engineering, business, and liberal arts.
+                Student Research Council - Shoolini University stands at the forefront of international research, attracting outstanding academics, research staff, and students from around the globe. Our researchers engage in cutting-edge work across multiple disciplines, making groundbreaking contributions in science, engineering, business, and liberal arts.
               </p>
 
               <p className="text-lg text-slate-700 leading-relaxed">
-                With state-of-the-art research facilities, extensive funding opportunities, and robust support networks, we're dedicated to turning research into actionable innovations that improve the human condition and our planet.
+                With state-of-the-art research facilities, extensive funding opportunities, and robust support networks, we&apos;re dedicated to turning research into actionable innovations that improve the human condition and our planet.
               </p>
 
               <Link
@@ -143,62 +142,6 @@ const Home = () => {
                 Learn More <FaArrowRight />
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* RESEARCH IMPACT */}
-      <section className="py-20 px-6 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Research Impact
-            </h2>
-            <div className="w-24 h-1 bg-emerald-500 mx-auto mb-6"></div>
-            <p className="text-xl text-slate-300">
-              At par with the world's best universities
-            </p>
-          </div>
-
-          {/* Comparison Table */}
-          <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-slate-700 border-b-2 border-emerald-500">
-                    <th className="px-6 py-4 text-left text-lg font-semibold">Institution</th>
-                    <th className="px-6 py-4 text-left text-lg font-semibold">FWCI Score</th>
-                    <th className="px-6 py-4 text-left text-lg font-semibold">Top 1% Publications</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <TableRow institution="Shoolini University" fwci="2.27" topPercent="9.3" highlight />
-                  <TableRow institution="University of Oxford" fwci="2.12" topPercent="3.8" />
-                  <TableRow institution="University of Cambridge" fwci="2.07" topPercent="4.2" />
-                  <TableRow institution="MIT" fwci="2.36" topPercent="6.0" />
-                  <TableRow institution="Princeton University" fwci="2.9" topPercent="4.9" />
-                  <TableRow institution="Yale University" fwci="2.04" topPercent="4.1" />
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Footnote */}
-          <div className="mt-8 text-sm text-slate-400 max-w-5xl mx-auto">
-            <p className="mb-3">
-              <span className="text-emerald-400 font-semibold">*FWCI (Field Weighted Citation Score)</span> indicates a university's contribution to human knowledge and signals research that has stood out globally.
-            </p>
-            <p>Data tracked for the period 2017–2019 for select institutions.</p>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center mt-12">
-            <Link
-              to="/pricing"
-              className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-10 py-4 rounded-lg text-lg transition"
-            >
-              Join Our Research Community
-            </Link>
           </div>
         </div>
       </section>
@@ -232,7 +175,7 @@ const Home = () => {
 
 // Stat Card Component
 const StatCard = ({ icon: Icon, count, label }) => (
-  <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 hover:border-emerald-500 hover:bg-slate-800/70 transition">
+  <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl flex-1 p-6 border border-slate-700 hover:border-emerald-500 hover:bg-slate-800/70 transition">
     <Icon className="text-4xl text-emerald-400 mb-3 mx-auto" />
     <p className="text-3xl font-bold text-white mb-1">{count}</p>
     <p className="text-sm text-slate-300 uppercase tracking-wide">{label}</p>
@@ -248,17 +191,6 @@ const PillarCard = ({ icon, title, description }) => (
     <h3 className="text-2xl font-bold text-slate-900 mb-3">{title}</h3>
     <p className="text-slate-600 leading-relaxed">{description}</p>
   </div>
-);
-
-// Table Row Component
-const TableRow = ({ institution, fwci, topPercent, highlight = false }) => (
-  <tr className={`border-b border-slate-700 hover:bg-slate-700/50 transition ${highlight ? 'bg-emerald-500/10' : ''}`}>
-    <td className={`px-6 py-4 font-medium ${highlight ? 'text-emerald-400' : 'text-white'}`}>
-      {institution}
-    </td>
-    <td className="px-6 py-4 text-slate-300">{fwci}</td>
-    <td className="px-6 py-4 text-slate-300">{topPercent}</td>
-  </tr>
 );
 
 // Quick Link Card Component
