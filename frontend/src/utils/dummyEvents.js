@@ -12,13 +12,7 @@ const dummyEvents = [
       imageUrl: "/event/1.jpeg",
       imageId: "src-induction-program-2025"
     },
-    images: [
-      "https://plus.unsplash.com/premium_photo-1661856767121-703740e85af9?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1534750407419-22c421e3a5c8?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1974&auto=format&fit=crop"
-    ],
+    images: [],
   },
   {
     _id: "2",

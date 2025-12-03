@@ -60,25 +60,11 @@ const data = {
       name: "Dr. Th. Abhishek Singh",
       image: "/abhishek.png",
     },
+    {
+      name: "Dr. Sonia",
+      image: "https://shooliniuniversity.com/media/1624518889-sonia.jpeg",
+    },
   ],
-  // "Advising Founder Members": [
-  //   {
-  //     name: "Dr. Saurabh Kulshrestha",
-  //     title: "Dean of Biotech",
-  //     image: "https://shoolini.irins.org/assets/profile_images/202334.jpg",
-  //   },
-  //   {
-  //     name: "Dr. Virender Rihani",
-  //     title: "Dean of YSAICDS",
-  //     image:
-  //       "https://shooliniuniversity.com/media/1654685857-Virender%20Rihani.jpeg",
-  //   },
-  //   {
-  //     name: "Prof. Munish Sahrawat",
-  //     title: "President & Dean of SBM",
-  //     image: "https://shooliniuniversity.com/media/1684386680-Munish%20S.jpeg",
-  //   },
-  // ],
   "Associate Partners and Global Partners": [
     "Claremont Graduate University",
     "Illinois Institute of Technology",
